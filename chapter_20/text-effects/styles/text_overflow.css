@@ -1,0 +1,33 @@
+/*CSS style sheet to demonstrate the use of the text-overflow
+and word-wrap properties.
+This property describes how should text in a component be rendered when
+it surpasses its size.*/
+
+/*This rule will cause an ellipsis to appear in the paragraph.
+In order for it to happen, the overflow modality of the element
+should be set to hidden (meaning it won't surpass the size of its
+containing element) and white-space should be set to nowrap in order
+to avoid the text from wrapping around the horizontal boundaries of
+the elements.*/
+p.par1{
+    width: 100px;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space: nowrap;
+}
+
+/*This text directly clips rather than displaying an ellipsis.*/
+p.par2{
+    width: 100px;
+    text-overflow: clip;
+    overflow:hidden;
+    white-space: nowrap;
+}
+
+/*The break-word value allows for a word to be broken down
+into two lines, in case it overflows the available size in 
+its containing element.*/
+p.word{
+    width: 50px;
+    word-wrap: break-word;
+}

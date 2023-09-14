@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate how clipping works in an HTML5 Canvas.
+Clipping consists of selecting an area that will be afected by drawing calls to the Canvas,
+so that canvas operations will only change the pixels on said area.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Clip</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Clipping out the bloat</h1>
+    <canvas id="canvas-element" width="500px" height="500px"></canvas>
+    
+    <script>
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+
+        context.beginPath()
+        //Snippet of code used to create a rectangle around the canvas.
+        //This function simplifies the drawing of a rectangle, by leting you
+        //draw the outline of said figure by supplying it its top left corner,
+        //and its width and height.
+        context.rect(0, 0, canvas.width, canvas.height)
+
+        //Snippet of code to create a star shaped figure based on a couple of parameters
+        //(mainly the center and radius of the circle used to draw it and the length 
+        //of its peaks relative to the circumference of the circle
+        let limb_size = 50
+        let radius = 40
+        let star_pieces = 5
+        let center = {x: canvas.width/2.0, y: canvas.height/2.0}
+
+        let step = (Math.PI*2.0)/star_pieces
+        
+        context.moveTo(center.x, center.y - limb_size - radius)
+        
+        for(ang = Math.PI/2.0; ang < 5*(Math.PI/2); ang+=step){
+            let peak_size = limb_size + radius
+            let peak = {x: center.x + Math.cos(ang)*peak_size, 
+                y: center.y - Math.sin(ang)*peak_size}
+            let floor = {x: center.x + Math.cos(ang+(step/2.0))*radius, 
+                y: center.y - Math.sin(ang+(step/2.0))*radius}
+            context.lineTo(peak.x, peak.y)
+            context.lineTo(floor.x, floor.y)
+        }
+
+        context.closePath()
+
+        //The clip function will select the defined area (that is, the area between the drawn
+        //star and canvas rectangle) and clip-out the rest. This means that drawing calls won't
+        //affect the pixels that don't lay inside of it. 
+        context.clip()
+
+        //Snippet of code to create a circle shaped figure that will be filled with a rainbow
+        //colored radial gradiente. It servers the purpose of making the area that we clipped 
+        //out of the Canvas visible.
+        let grad2 = context.createRadialGradient(center.x, center.y, 1, center.x, center.y, 
+        center.x)
+
+        grad2.addColorStop(0, 'violet')
+        grad2.addColorStop(0.166,  'blue')
+        grad2.addColorStop(0.332, 'green')
+        grad2.addColorStop(0.498, 'yellow')
+        grad2.addColorStop(0.664, 'orange')
+        grad2.addColorStop(0.830, 'red')
+        grad2.addColorStop(1, 'violet')
+
+        context.beginPath()
+        context.fillStyle = grad2
+        context.arc(center.x, center.y, center.x, 0, Math.PI*2.0)
+        context.fill()
+
+
+    </script>
+</body>
+</html>

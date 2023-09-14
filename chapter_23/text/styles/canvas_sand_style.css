@@ -1,0 +1,14 @@
+/*Style sheet to style a canvas element with a sand-looking background*/
+
+h1{
+    font-weight: bold; 
+    text-decoration: black solid underline;
+}
+
+h1::first-letter{color: darkred; font-size: larger}
+
+canvas{
+    border: 2px dotted black;
+    border-radius: 6px;
+    background-color: rgb(210, 210, 0);
+}

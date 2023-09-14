@@ -1,0 +1,113 @@
+/*Style sheet of the microdata HTML document.
+It's supposed to fashion the website in a wikipedia-like style.*/
+
+/*-->General styles of HTML elements*/
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+p{
+    font-size: 1em;
+}
+
+/*We apply specific fonts families and size to the headers to make them distinct from the rest of the text*/
+h1{
+    border-bottom: solid 0.1px #a2a9b1;
+    font-size: 1.8em;
+    margin-bottom: 1em; 
+    font-weight: 400;
+    font-family: 'Linux Libertine', 'Georgia', 'Times','serif';
+    padding-bottom: 0.25em;
+}
+
+h2{
+    border-bottom: solid 0.1px #a2a9b1;
+    font-size: 1.5em;
+    margin-bottom: 0.25em; 
+    font-weight: 400;
+    font-family: 'Linux Libertine', 'Georgia', 'Times','serif';
+    overflow: hidden;
+}
+
+/*We style the headers of the summary card for them to align to the left of the summary card's table*/
+th{
+    text-align: left;
+}
+
+/*-->Styles of the different containers of the website*/
+
+/*Main container of the website. It mainly creates horizontal margins.*/
+div.content-container{
+    height: 100%;
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 25px;
+}
+
+
+/*Styles of the summary card giving used to display Platon's biological details.*/
+/*It imitates the little summary boxes on the top right of wikipedia articles.*/
+
+/*Main container of the summary card. It defines float: right for the card to place itself on the right of the main text, without
+displacing it to its bottom. It also defines margins, borders and padding.*/
+div.summary-card{
+    padding: 3px;
+    border: solid grey 1px;
+    float: right;
+    background-color: #f8f9fa;
+    width: 250px;
+    margin-left: 8px;
+}
+
+/*Style of the different titles inside of the summary cards.*/
+span.summary-card-title{
+    font-size: 1em;
+    font-weight: bold;
+    font-family: 'sans-serif';
+    width: 100%;
+    display: block;
+    text-align: center;
+    background-color: rgb(231, 231, 124);
+    margin-bottom: 8px;
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Style of the image of the summary card. It defines some borders and margins for it to be centered.*/
+img.summary-card-image{
+    padding: 2px;
+    border: #a2a9b1 solid 1px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.5em; 
+    display: block;
+}
+
+
+
+/*-->Styles of specific elements of the website*/
+
+/*This is the style of the name of the dog species inside of the summary card, in a similar style as the same name in the Dog Wikipedia article
+(https://en.wikipedia.org/wiki/Dog).*/
+#binomial-name{
+    width: 100%; text-align: center; 
+    font-style: italic; font-weight: bold; 
+    display: inline-block; font-size: 1.15em;
+}
+
+/*Style of the button that shows the microdata metadata through a browser alert inside of the website.*/
+#show-microdata-button{
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    border: #a2a9b1 2px solid;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 1.25em;
+    font-weight: 600;
+    display: block;
+}

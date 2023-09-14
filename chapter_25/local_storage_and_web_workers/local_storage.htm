@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of HTML5 local storage. This is a type of web storage that goes beyond cookies (can store only 4KB) and session storage
+in that it can tipically store a lot more information. Each domain has its own local storage space for security reasons.
+Here, we create a matrix storage application in which to store different kind of tabular information stored in tabular format.
+Additionally, we demonstrate the use of HTML5's web workers, which are snippets of codes executed indepently of a website's main script on its own threads.
+This are very useful to make calculations or execute processes in the background (making use of current Hardware's parallelism capabilites),
+without affecting the performance of the main website.-->
+<html manifest='spreadsheet.manifest'>
+<head>
+    <meta charset="UTF-8">
+    <title>Local Storage</title>
+    <style>
+        @import url('../global_styles/global_style.css');
+        @import url('style/local_storage.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+    <script>
+
+        //Counters used to keep track on the number of rows, columns, and, in the case of a value generator, the number of the current cell being generated.
+        var numRows = 0;
+        var numCols = 0;
+        var currCell = 0;
+
+        //Function to check wether the name of a column which will be added to the table is correct
+        function columnNameChecker(name){
+            if(name !== "")
+                return true;
+            else{
+                alert("Column name is empty!");
+                return false;
+            } 
+        }
+
+        //Function to add a column to the table element defined in the body of the HTML document. It first appends the new column to the table header,
+        //and then traverses the table rows to add a new cell to each of the rows. In the end it increments a column counter used to keep track of the
+        //number of columns availables, a number which is used when new rows are created to know the number of cells to add to the rows.
+        function addColumn(columnName){
+
+            if(columnNameChecker(columnName)){
+
+                console.log('Adding column');
+                
+                let tab = O('data-table');
+                let newh = document.createElement("TD");
+                let boldTextContainer = document.createElement('strong');
+                let text = document.createTextNode(columnName);
+                
+                boldTextContainer.appendChild(text);
+                newh.appendChild(boldTextContainer);
+                tab.tHead.children[0].appendChild(newh);
+
+                if(tab.tBodies[0].children.length > 0){
+                    
+                    //If there are any rows in the table, we iterate through them in order to add a new cell on each. These will be the cells
+                    //of the new column.
+                    for(r of tab.tBodies[0].children){
+                        console.log(r.tagName)
+                        if(r.tagName === "TR"){
+                            let cell = document.createElement("td");
+                            let inp = document.createElement("input");
+                            inp.setAttribute('type', 'text');
+                            inp.setAttribute('size', '20');
+                            cell.appendChild(inp);
+                            r.appendChild(cell);
+                        }                
+                    }
+                    
+                }
+
+                numCols++;
+                
+                return true;
+            }
+            else return false;
+        }
+
+        //Function to add a new row to the table defined in the body of the HTML document. It first adds a new tr element to the table, and then fills them 
+        //with as many cells as the table has columns.
+        function addRow(){
+            
+            
+            
+            let tab = O('data-table');
+            let r = document.createElement("tr");
+            let body = tab.tBodies[0];
+            
+
+            //We iterate through the number of columns in order to add a new cell per column
+            for(let i = 0; i < numCols; i++){
+
+                //We generate each cell as a td element with an input element inside of it. 
+                let cell = document.createElement("td");
+                let inp = document.createElement("input");
+            
+                //We initialize the attributes of the input element
+                inp.setAttribute('type', 'text');
+                inp.setAttribute('size', '20');
+            
+                //Finally we append the input element
+                cell.appendChild(inp);
+
+                r.appendChild(cell);
+            
+            }
+
+            numRows++;
+            body.appendChild(r);
+
+        }
+
+        //Very similar function as the previous addRow function, but this time we initialize the values using the array passed as an argument to the fuction.
+        function addRowAndValues(values){
+            
+            let tab = O('data-table');
+            let r = document.createElement("tr");
+            let body = tab.tBodies[0];
+            
+            for(let i = 0; i < numCols; i++){
+            
+                let cell = document.createElement("td");
+                let inp = document.createElement("input");
+            
+                inp.setAttribute('type', 'text');
+                inp.setAttribute('size', '20');
+                //We initialize the value inside of the input element by consulting the corresponding input array element.
+                inp.setAttribute('value', values[i]);
+
+                cell.appendChild(inp);
+                r.appendChild(cell);
+                body.appendChild(r);
+            
+            }
+
+        }
+
+        //Function to create a table with only one column, the one contained inside of the new-column-initial-input text input.
+        function createTable(){
+
+            let table_div = O("table-column-adder");
+            let newColumnName = O('new-column-initial-input').value;
+            
+            if(addColumn(newColumnName)){
+                S('initial-menu').display = 'none';
+                S('section-container').display = 'block';
+            }
+
+        }
+
+        //Wrapper function to create a new column of the table, rather than for creating the first column
+        //(distinction necessary since we use different input fields for both).
+        function addNewColumn(){
+
+            let columnName = O('new-column-input').value;
+            addColumn(columnName);
+
+        }
+
+        //Function to retrieve a matrix stored in the browser's local storage and display it in the HTML document. 
+        function loadTable(){
+            
+            //Using the getItem function we can retrieve a string that we saved previously by associating with an specific key.
+            let dataString = localStorage.getItem('DataMatrix');
+
+            //We have to convert the saved string into an actual object through which we can iterate to retrieve the data.
+            //To do so we use the parse function which reverses the process we applied with the JSON class stringify function
+            //to transform a JS object into a parsable string.
+            let dataObject = JSON.parse(dataString);
+
+            //This code reconstruct the table from the parsed object.
+            //It iterates through the previous table header elements to initialize the new table header,
+            //and does the same for the table values, which are stored as a string matrix.
+
+            for(header of dataObject.headers){
+                addColumn(header);
+            }
+            for(row of dataObject.values)
+                addRowAndValues(row);
+
+            S('initial-menu').display = 'none';
+            S('section-container').display = 'block';
+
+        }
+
+        //Function used to save the values and headers of the table inside a key/string pair of the website's local Storage.
+        function saveTable(){
+
+            if(confirm("Saving the data will save the current values in the matrix, but will refresh the page. Are you sure you want to continue?")){
+                
+                let tab = O('data-table');
+
+                //This is the object we'll use to store the table data. It has two properties: the table headers, and the table values.
+                //The headers will be an array of string, and the values a string matrix.
+                //With these two values we have all the information through which we can later iterate to reconstruct the matrix data when pressing the "Load Table" button.
+                let savedData = {headers: [], values: []};
+
+                //We iterate through the strings. Indicated with arrows are the path we traverse inside of the table's DOM tree to retrieve the table data.
+                //tab -> thead -> tr -> Header data nodes (td) 
+                for(colHeader of tab.tHead.children[0].children){
+                    
+                    //td -> tb -> textNode -> textContent
+                    let nodeContent = colHeader.children[0].textContent;
+
+                    savedData.headers.push(nodeContent); 
+                }
+
+                for(r of tab.tBodies[0].children){
+
+                    let rArray = []
+
+                    for(elem of r.children)
+                        rArray.push(elem.children[0].value);
+                    
+                    savedData.values.push(rArray);
+                }
+
+                //With the stringify function we transform the initial object into a parseable string which we can store in the browser's localStorage object
+                //(It can only store key,string pairs).
+                let dataString = JSON.stringify(savedData);
+
+                console.log(dataString)
+
+                //With the call to setItem we store the newly created string, finalizing the saving procedure of the matrix.
+                localStorage.setItem("DataMatrix", dataString);
+
+
+                location.reload();
+            }
+            
+        }
+
+        //Function to set a value of the matrix's table by specifying its coordinates on the table (the row and column numbers, counted from top to bottom
+        //and from left to right, respectively) and a value. The coordinates begin with 1 (that is, 1 is the first column or row, 2 is the second and so on).
+        function setCell(f, c, val){
+
+            if(f > numRows || f < 1)
+                throw new Error("Specified row out of range!");
+            else if(c > numCols || f < 1)
+                throw new Error("Specified column out of range!");
+
+            let tab = O('data-table');
+
+            let currRow = tab.tBodies[0].children[f-1];
+            let cCell = currRow.children[c-1];
+
+            cCell.children[0].value = val;
+
+        }
+
+        //This is the function used to demonstrate the use of workers in modern HTML. This funcion creates a new worker, which acts as a separate process with
+        //its own thread. The worker is created from file whose path is specified in the Worker class constructor. The value of the "Montecarlo Split" (explained
+        //in the worker's source code file) is then calculated for a random value inside of the worker. This value is then passed as a message to the main thread, 
+        //by the worker, and the main thread sets the first available empty cell of the matrix to this value.
+        function startWorker(){
+
+            if(!!window.Worker){
+
+                for(i = 1; i <=5; i++)
+                addColumn('c' + i);
+
+                worker = new Worker('scripts/montecarlo_splitter.js');
+
+                worker.onmessage = function(event){
+
+                    //We calculate the first empty cell of the matrix by using the currCell counter.
+                    let fIndex = Math.floor(currCell/numCols) + 1;
+                    
+                    if(fIndex > numRows)
+                        addRow();
+
+                    let cIndex = currCell%numCols + 1;
+
+                    //We set the value of this cell with the setCell function.
+                    setCell(fIndex, cIndex, event.data);
+
+                    //We increment the currCell counter since a new cell has been successfully assigned.
+                    currCell++;
+
+                }
+
+                //Make the table elemnet visible.
+                S('initial-menu').display = 'none';
+                S('section-container').display = 'block';
+                S('stop-generator-button').display = 'block';
+                
+            }else
+                alert("Webworkers not supported.")
+            
+        }
+
+        //Function to stop the worker generating the sequence being introduced in the website's matrix.
+        function stopGenerator(){
+
+            //This member funciton of the Worker class terminates (stops/kills/frees the resources) of a running worker.
+            if(typeof worker !== 'undefined')
+                worker.terminate();
+
+        }
+
+        //Function to go back to the initial menu, all the while resetting the application state.
+        function goBack(){
+
+            if(confirm('Are you sure you want to go back? Doing so will delete all unsaved data!')){
+
+                //We stop the sequence generator, in case it's running.
+                stopGenerator();
+
+                let tab = O('data-table');
+                
+                /*We clear the body fo the table by looping through the table element body's children and removing them*/
+                let bod = tab.tBodies[0];
+                while (bod.firstChild) {
+                    bod.removeChild(bod.lastChild);
+                }
+
+                let head = tab.tHead.children[0];
+
+                /*We clear the first and only row the table's by looping through its children and removing them.*/
+                while (head.firstChild) {
+                    head.removeChild(head.lastChild);
+                }
+                
+                /*We reset the different counters*/
+                numRows = 0;
+                numCols = 0;
+                currCell = 0;
+
+                /*We make the initial menu visible, and the matrix editor section invisible.*/
+                S('initial-menu').display = 'block';
+                S('section-container').display = 'none';
+                S('stop-generator-button').display = 'none';
+            }
+
+        }
+    
+    </script>
+</head>
+
+<body>
+    <div id="header-container">
+        <h1>Cloudy Storage</h1>
+    </div>
+
+    <div id="main-container">
+        
+        <div id="side-margin-right"></div>
+        
+        <div id="initial-menu">
+            <input default="new column" id="new-column-initial-input" type="text" size="15"minlength="1" maxlength="10" placeholder="First column of table">
+            <button onclick="createTable()" id="create-table-button">Create New Table</button>
+            <button onclick="loadTable()" id="load-table-button">Load Previous Table</button>
+            <button onclick="startWorker()">Auto generate</button>
+        </div>
+        <div id="section-container" style="display: none;">
+            <button id="go-back" onclick="goBack()"></button>
+            <div class="table-column-adder"  id="table-container">
+                <div class="table-row-adder">
+                    <div class="table-wrapper">
+                        <table id="data-table">
+                            <thead>
+                                <tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button id="new-row-button" onclick="addRow()">New Row</button>
+                </div>
+                <div id="control-container">
+                    <div id="new-column-input-container" class="input-and-button">
+                        <input default="new_column" id="new-column-input" class="new-column-element" type="text" size="10" minlength="1" maxlength="10">
+                        <button id="new-column-button" class="new-column-element" onclick="addNewColumn()">Add Column</button>
+                    </div>
+                    <button class="centered-button" onclick="saveTable()">Save data</button>
+                    <button id="stop-generator-button" class="centered-button" onclick="stopGenerator()" style="display: none;">Stop value generator</button>
+                </div>
+            </div>
+        </div>
+        <div id="side-margin-left"></div>
+    </div>
+    
+</body>
+</html>

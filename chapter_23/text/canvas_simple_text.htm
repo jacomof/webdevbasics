@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate how to draw text inside of an HTML5's Canvas-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas & Text</title>
+    <style>
+        @import url('styles/canvas_sand_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Sand Writing</h1>
+    <canvas id="canvas-element" width="500px" height="500px">
+
+    </canvas>
+    <script>
+
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+        //The font and size of the text to be written in the canvas is set with the font property
+        //of a 2D canvas element.
+        context.font = "45px Ubuntu"
+        //The position of the text relative to the position of the stroke
+        //is set using the textAlign property.
+        context.textAlign = "center"
+        context.fillStyle = "rgb(150,100,0)"
+
+        //Finally, the fillText function is used to draw a certain text in a given position
+        //of the canvas
+        context.fillText("Dust in the wind.", 250, 250)
+
+    </script>
+</body>
+</html>

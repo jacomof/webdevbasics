@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Supermarket</title>
+    <script>
+        line=[]
+        client_id=0
+        function add_client(){
+            //The push method adds an element to the end of an array. Returns the new length of the array and is mutating
+            //Similarly, the unshift method adds it at the beginning
+            line.push(client_id)
+            client_pannel.innerHTML = "State of the line is: " + line + "<br>"
+            client_id++
+        }
+        function remove_client(){
+            //The shift method removes the element at the beginning of an array. Returns the removed element.
+            //Similarly, the pop method removes it at the end   
+            curr_client = line.shift()
+            client_pannel.innerHTML = "State of the line is: " + line + "<br>"
+        }
+        
+    </script>
+    </head>
+    <body>
+        <h1>Supermarket simulator</h1>
+        <button onclick="add_client()">Client enters</button>
+        <button onclick="remove_client()">Client leaves</button>
+        <br><br>
+        <div title="Clients' information" id="client_pannel"></div>
+    </body>
+</html>

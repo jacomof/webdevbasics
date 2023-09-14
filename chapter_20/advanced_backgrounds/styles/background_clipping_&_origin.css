@@ -1,0 +1,96 @@
+/*CSS style sheet to style the css_background_clipping_&_origin.htm
+HTML document using the background-clip and background-origin
+properties.
+It shows different combinations of the properties in a matrix-like
+structure*/
+
+
+/*Container used to create a grid-like structure for the different
+div element it contains.*/
+.container{
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    grid-template-rows: repeat(3,auto);
+    row-gap: 10px;
+    column-gap: 15px;
+}
+
+[class^="item"]{
+    background: url("images/tiger.avif");
+    border: 10px black;
+    border-style: dashed;
+    height: 100px;
+    padding: 20px;
+    margin: 20px;
+    background-repeat:no-repeat;
+    color: white;
+}
+
+/*In all rows, from left to right, the clippping is changed to clip
+the local background image specified with the background: url...
+property to the content, padding and border (area inside the borders
+including the width of the borders themselves) boxes */
+
+/*From top to bottom, the origin of the background image is changed,
+from the top left corner of the content box, to the top left corner
+of the border box, all the way through the top left corner of the padding
+box.*/
+
+.item1{
+
+    background-origin: content-box;
+    background-clip: content-box;
+    background-repeat: no-repeat;
+}
+
+.item2{
+
+    background-origin: content-box;
+    background-clip: padding-box;
+    background-repeat: no-repeat;
+}
+
+.item3{
+
+    background-origin: content-box;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+}
+
+.item4{
+
+    background-origin: padding-box;
+    background-clip: content-box;
+    background-repeat: no-repeat;
+}
+.item5{
+
+    background-origin: padding-box;
+    background-clip: padding-box;
+    background-repeat: no-repeat;
+}
+.item6{
+
+    background-origin:padding-box;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+}
+
+.item7{
+
+    background-origin: border-box;
+    background-clip: content-box;
+    background-repeat: no-repeat;
+}
+.item8{
+
+    background-origin: border-box;
+    background-clip: padding-box;
+    background-repeat: no-repeat;
+}
+.item9{
+
+    background-origin: border-box;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--HTML document to showcase different element transforms (translation,
+rotation, scaling & skewing) using CSS-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Some title</title>
+    <style>
+        @import url('styles/2D_transforms.css');
+    </style>
+</head>
+<body>
+    <h1>2D transforms in the Matrix</h1>
+    <div>
+        <p class="translated">
+            This is text that will be translated to another position to the
+            right and down.
+        </p>
+    </div>
+    <br>
+    <br>
+    <div class="electronics-image-container">
+        <img src="images/electronics.jpg" width="500px" class="rotated">
+    </div>
+    <br>
+    <div class="open-image-container">
+        <img src="images/open2.jpg" width="500px" class="scaled">
+    </div>
+    <br>
+    <br>
+    <br>
+    <div>
+        <p class="matrix-transformed">
+            This text is skewed, rotated and translated using CSS's 
+            "matrix" function. This function takes 6 arguments, the first
+            4 representing a 2D transform matrix to the element, 
+            and the last 2 the 2D translation applied to it. 
+        </p>
+    </div>
+</body>
+</html>

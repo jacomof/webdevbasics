@@ -1,0 +1,55 @@
+/*CSS style sheet to determine the style of the css_rounded_borders HTML
+element. It demonstrate the use of the border-radius property of CSS
+border elements. Borders are one of the three elements that conform the
+box model (margin, border and padding), and they define the outline of an
+element. The border-radius attribute makes borders be round on the edges.
+It takes up to four arguments, each one being one of the radius of the 
+circumference of the different edges (with the order top-left, top-right, 
+bottom-right & bottom-left). It can also be specified with only one value
+(the same for every border), two values (top-left & bottom-right, top-right 
+& bottom-left) or three values (top-left, top-right & bottom-left,
+bottom-right). Round borders can also be set individually, with the
+properties border-top-left-radius, border-top-right-radius, etc. 
+Borders can also be ellipsis-shaped, by specifiyng a vertical and 
+horizontal length of the ellipsis used to draw the border.*/
+
+h1{
+    text-align: center;
+    text-shadow: 2px 2px 3px black;
+}
+
+div{
+    height: 100px;
+    background-color: aquamarine;
+    font-weight: 600;
+    margin-top: 20px; 
+    text-align: center;
+    border: solid 3px;
+}
+
+.one-rounding{
+    border-radius: 20px;
+}
+
+.two-rounding{
+    border-radius: 20px 40px;
+}
+
+.three-rounding{
+    border-radius: 40px 20px 40px;
+}
+
+.four-rounding{
+    border-radius: 10px 20px 30px 40px;
+}
+
+.individual-rounding{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 40px;
+}
+
+.ellipsis-rounding{
+    border-radius: 10px / 20px;
+}

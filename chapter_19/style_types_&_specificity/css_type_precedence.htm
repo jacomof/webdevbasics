@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--CSS document to showcase the different type of CSS styles-->
+<!--In CSS there are two main types to classify styles in an HTML document. 
+First, the they can be classified by the styles' author: 
+    *1 Styles defined by the author of the document
+    *2 User defined styles
+    *3 Browser's default styles.
+Secondly, they can be classified by the way the were created:
+    *1 Inline styles
+    *2 Internal styles
+    *3 External Styles
+The different ways styles can be created means that conflicts may arise
+when styles from different classifications affect the same elements.
+To resolve them, CSS uses a method known as cascading. In this method,
+each of the different types of classifications of the same type
+have a priority (in the classification above, the number represent the
+precedence (the lower the higher the priority)) and only the rule with
+the highest priority is applied. For example, inline styles are prioritized
+above internal styles, etc...-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CSS document type precedence</title>
+        <style>
+            @import url('styles/type_precedence.css');
+            p {text-decoration: underline;}
+        </style>
+    </head>
+    <!--The inline rule being applied is the one who will render
+    when the document is visualized in the browser due to its precedence.-->
+    <p style="text-decoration: red overline;">
+        Hello there, this is some text to showcase type precedence in CSS.
+    </p>
+
+    <!--However, on the following element the internal style for text deco-
+    ration will be applied, given that it0 has higher precedence than the external styles-->
+    <p id="parag">
+        Hello again. This is yet another piece of text to showcase type
+        precedence in CSS.
+    </p>
+    <!--This element will be styled by the external css document given that
+        it has no internal or inline style being applied to it-->
+    <div>
+        I love my dog Plato!
+    </div>
+    
+</html>

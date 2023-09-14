@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--HTML document used to demonstrate the use of videos as a form of media in the HTML5's web.
+It contains several videos using different configurations of HMTL5's video tag, which is the
+tag used to include audiovisual media in modern HTML.
+Videos in computers are stored using encoding mechanism to reduce their raw size. Additionally, these encoded files are stored in containers that wrap together
+sound and video data.
+There're several containers and encoders, and browsers usually support several of them (usually open source browsers have issues with propietary
+encoding/decoders or containers, hence the lack of support.)-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 video</title>
+    <style>
+        @import url('global_styles/media.css');
+    </style>
+    <script src="global_scripts/access_functions.js"></script>
+    <script>
+
+        //Function used to play the video inside of the custom video player. It uses the DOM defined function play of the video element. 
+        function player_play(){
+            let player = O('js-controlled-video')
+            player.play()
+        }
+
+        //Function used to pause the video inside of the custom video player. It uses the DOM defined function pause of the video element.
+        function player_pause(){
+            let player = O('js-controlled-video')
+            player.pause()
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Visual patrol: The K9 unit &#128021</h1>
+
+    <!--Just like the audio tag, to use the video tag we first provide the video tag and then specify several sources of media to be displayed.
+    The control argument includes a user interface to play and pause the video.-->
+    <video controls preload width="400px">
+        <!--Just like in the audio example, we supply different versions of the same media in different formats to let browsers choose their preferred
+        encoding/container.-->
+        <!--The first version is encoded in h265 and inside the container MP4, both propietary.-->
+        <source src="media/video/platon.mp4" type="video/mp4">
+        <!--The second version is encoded in theora using the vorbis (ogg) audio encoding. Both are open source, and are usually supported by all browsers.-->
+        <source src="media/video/platon.ogv" type="video/ogg">
+        <!--Fallback message in the unlikely case the video tag is not supported.-->
+        Your browser doesn't support the video tag.
+    </video>
+
+    <!--This is a custom video player, similar to the custom audio player. It's implemented using CSS and a div tag-->
+    <div class="custom-video-player">
+            <!--The preload tag makes the video to be preload as soon as the page begins being loaded.-->
+        <video preload id="js-controlled-video" width="400px" class="custom-video">
+            <source src="media/video/platon_yoga.mp4" type="video/mp4">
+            <source src="media/video/platon_yoga.ogv" type="video/ogg">
+            <!--Fallback message in the unlikely case the video tag is not supported.-->
+            Your browser doesn't support the video tag.
+        </video>
+        <button class="custom-video-player-button-1" onclick="player_play()">Play</button><button class="custom-video-player-button-2" onclick="player_pause()">Pause</button>
+    </div>
+
+
+    <!--The autoplay parameter makes the video play as soon as it's loaded.
+    In most browsers, the autoplay feature only works when the sound is muted using the muted parameter.-->
+    <video controls width="400px" autoplay muted>
+        <source src="media/video/platon_pata.mp4" type="video/mp4">
+        <source src="media/video/platon_pata.ogv" type="video/ogg">
+        <!--Fallback message in the unlikely case the video tag is not supported.-->
+        Your browser doesn't support the video tag.
+    </video>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--HTML document used to demonstrate how to draw circles or circle segements
+inside of an HTML5's canvas. It does so by drawing the olympic rings-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Arc</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Olympic rings</h1>
+    <canvas id="canvas-element" width="500px" height="500px"></canvas>
+    
+    <script>
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+        context.lineWidth = 3
+
+        //Initialization of the parameters used to draw the rings
+        size = 50
+        v_center = 250
+
+        h_offset = size-10
+        v_offset = size-10
+        h_pos = h_offset+130
+        v_pos = v_center - v_offset
+        olympic_colors = ["blue", "yellow", "black", "green", "red"]
+        //Flag used to draw the rings above or below the imaginary center line
+        //around which they're drawn
+        v_sign = -1
+
+        //Loop through the colors of the olympic rings
+        for(c of olympic_colors){
+
+            context.strokeStyle = c
+            context.beginPath()
+            //The arch function of the canvas 2d context is used to draw the rings.
+            //It takes as arguments the center of the circle, the radius, two angles
+            //used to select the segment of the circle to draw, and a boolean
+            //flag to select the direction to which the circle should be drawn 
+            //(counter-clockwise -> true, clockwise -> false)
+            context.arc(h_pos, v_pos, size, 0, Math.PI*2.0, false)
+            h_pos += h_offset
+            v_sign*=-1
+            v_pos = v_center + v_sign*v_offset
+            context.stroke()
+        }
+
+        //Another example of the use of the arch function, this time demonstrating the effects
+        //of the counterclockwise argument
+        context.beginPath()
+        context.strokeStyle = "yellow"
+        context.fillStyle = "yellow"
+        //Draws the first side of the circle
+        context.arc(250, 400, 30, Math.PI/2.0, (3*Math.PI)/2.0, false)
+        context.stroke()
+        context.fill()
+        
+        
+        context.beginPath()
+        context.strokeStyle = "red"
+        context.fillStyle = "red"
+        //Draws the first side of the circle. Notice it's the same call
+        //but changing the counterclowise property, which causes the circel to 
+        //be drawn in the separate direction, and, hence, to comple the circle.
+        context.arc(250, 400, 30, Math.PI/2.0, (3*Math.PI)/2.0, true)
+        context.stroke()
+        context.fill()
+        
+    </script>
+</body>
+</html>

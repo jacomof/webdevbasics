@@ -1,0 +1,21 @@
+/*CSS style sheet to style the js_style_editing.htm HTML
+document*/
+
+h1{
+    font-weight: bold; 
+    text-decoration: black solid underline overline;
+}
+
+h1::first-letter{color: darkred; font-size: larger}
+
+div.box{
+    border: 2px solid black;
+    background-color: darkslategrey;
+    color: white;
+    width: 100px;
+    height: 100px;
+}
+
+p{
+    white-space: pre-line;
+}

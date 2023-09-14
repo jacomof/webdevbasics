@@ -1,0 +1,33 @@
+/*CSS document to style several pieces of text contained in 
+the css_font HTML document. It uses the text family of properties
+to do so.*/
+
+/*text-transform properties apply a modification
+of the text being displayed (like uppercasing or lowercasing the 
+text), achieving behavior that was before only possible using an
+scripting language like javascript 
+*/
+/*The following rule applies a transform to the content of the text,
+by capitalizing all the words inside of the main and genesis objects. 
+It also showcases the use of rule grouping. This is when we apply 
+the same rule to different selectors by separating them with commas
+besides the same declaration*/
+#main_title, #genesis {text-transform: capitalize;}
+ 
+
+/*Text decoration add some element to the text (like an underline or an
+overline). They also modify how the text is displayed. 
+This rule adds a "wavy" underline of the lorem title.*/
+#lorem {text-decoration: wavy underline;}
+
+
+/*The text-aling properties modify a text's alignment.
+The text-indent its indentation at the beginning of a paragraph.
+The text-shadow adds a shadow to the text.*/
+/*The following rules modifies all of these properties*/
+.important {text-align: justify;
+    text-indent: 7em;
+    text-shadow: 2px 2px goldenrod;} /*The most common form 
+    text-shadow property takes three arguments: x-offset & y-offset of the shadow
+    and its color
+    */

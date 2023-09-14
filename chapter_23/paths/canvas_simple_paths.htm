@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of simple straight paths in HTML5's 
+canvas. This paths can then be drawn using the stroke call of a 2D canvas context.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Paths</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Pathing through</h1>
+    <canvas id="canvas-element" width="500px" height="500px"></canvas>
+    <script>
+
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+        //Selects the width of the lines that'll be drawn on the canvas
+        context.lineWidth = 5
+        //Selects the color of the line
+        context.strokeStyle = "darkred"
+
+        context.beginPath()
+        //2D Vertex between which lines will be drawn
+        vertexList = [[100,100],[400,100],[100,400],[400,400]]
+        //Call to create a new path beginning in the first point of the vertex
+        context.moveTo(vertexList[0][0], vertexList[0][1])
+        for(i = 0; i < vertexList.length; i++){
+            for(j= i+1; j < vertexList.length; j++){
+                //console.log("Drawing line from point " + vertexList[i] + " to point " + vertexList[j])
+                //In each iteration we create a new path beginning and ending in a different
+                //vertex pair combination.
+                context.moveTo(vertexList[i][0], vertexList[i][1])
+                context.lineTo(vertexList[j][0], vertexList[j][1])
+            }
+        }
+        //This call materializes the paths that were created on the canvas using the strokeStyle
+        //property's color and the lineWidth property's width
+        context.stroke()
+        
+
+    </script>
+</body>
+</html>

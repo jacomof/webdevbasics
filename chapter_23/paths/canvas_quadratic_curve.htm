@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate the use of the quadraticCurveTo method to draw quadratic 
+hyperboles segments between two points.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Steamy valley</title>
+    <style>
+        @import url('styles/steamy_valley.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>The Steamy Valley</h1>
+    <canvas id="canvas-element" width="500px" height="500px"></canvas>
+    
+    <script>
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+
+        //Configuring the color of the skin of the character
+        context.moveTo(100, 100);
+        context.fillStyle = "lightsalmon"
+        context.closePath()
+        context.fill
+
+        //Drawing the body of the Mr Steamy
+        //--------------Explanation
+        //The quadraticCurveTo function draws a path from the current point of a path and 
+        //a second point (third argument) using a third point as an attractor.
+        //This path is curves, shaped like a hyperbolic curve, and works as if it was a
+        //an elastic band being pulled by the attractor point (the further the point from 
+        //the line, the higher the attraction and the more curved the curve will be)
+        //-------------
+        context.quadraticCurveTo(50, 20, 220, 60)
+        context.quadraticCurveTo(530, 20, 450, 250)
+        context.quadraticCurveTo(500, 600, 400, 420)
+        context.quadraticCurveTo(295, 260, 200, 380)
+        context.quadraticCurveTo(70, 600, 130, 320)
+        context.lineTo(160, 160)
+        context.quadraticCurveTo(110, 120, 100, 100)
+        context.closePath()
+        context.fill()
+        context.stroke()
+
+    
+        //Drawing the left eye
+        context.beginPath()
+        context.fillStyle = "white"
+        context.lineWidth = 4
+        context.arc(260, 100, 30, 0, Math.PI*2.0)
+        context.stroke()
+        context.fill()
+        context.beginPath()
+        context.fillStyle = "black"
+        context.arc(260, 100, 5, 0, Math.PI*2.0)
+        context.stroke()
+        context.fill()
+
+
+        //Drawing the right eye
+        context.beginPath()
+        context.fillStyle = "white"
+        context.lineWidth = 4
+        context.arc(370, 120, 30, 0, Math.PI*2.0)
+        context.stroke()
+        context.fill()
+        context.beginPath()
+        context.fillStyle = "black"
+        context.arc(370, 120, 5, 0, Math.PI*2.0)
+        context.stroke()
+        context.fill()
+
+
+        //Drawing the mouth
+        context.beginPath()
+        context.moveTo(230, 250)
+        context.quadraticCurveTo(290,280,350,250)
+        context.stroke()
+        
+    </script>
+</body>
+</html>

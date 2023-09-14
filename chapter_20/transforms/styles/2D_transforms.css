@@ -1,0 +1,62 @@
+/*CSS style sheet to style the css_2D_transforms.htm HTML document.
+It demonstrates the different ways to transform an element in CSS
+in 2D using the transform property.
+Transforms can be specified by using transform matrix of different dimensions
+or functions that correspond with a certain transform (eg. translate)*/
+
+/*Container styling, to indicate initial position*/
+div{
+    display: inline-block;
+    border: black solid;
+}
+
+div.electronics-image-container{
+    position: relative;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
+/*This rule translates the paragraph element 100ox to the right, and
+20px upwards from where it's initially positioned
+The translate function uses measures as arguments*/
+p.translated{
+    background-color: lightgreen;
+    transform: translate(100px, 20px);
+}
+
+/*This rule rotates the electronics.jph image 45 sexagesimal degrees 
+clokwise. It uses degrees as arguments.*/
+img.rotated{
+    transform: rotate(45deg)
+}
+
+/*This rule scales the open2.jpg image 2 times horizontally and 1.5
+times vertically. The scale function can take one or two arguments,
+to scale on the different 2D dimensions separately. The arguments
+are factors by which the size of the image is multiplied.
+If only one argument is provided, the image is scaled equally
+in both dimensions.
+The third outline in the rendered document shows the initial size 
+of the image.
+*The image is translate to avoid it going beyond the boundaries of the 
+document
+*/
+img.scaled{
+    transform: scale(2,1.5) translate(500px,-300px);
+}
+
+/*This is an example of a transform applied to the "matrix-translated"
+element by using a transform matrix and two elements used to represent
+translation. To achieve a rotation of 45 degrees and a skewing of
+45 degrees, the following matrixes are multiplied:
+(cos(45) = 0.707 -sin(45)=-0.707) (1 tan(45) = 1)
+(sin(45) = 0.707 cos(45) = 0.707)(0 1)
+obtaining the matrix
+(0.707 1.414)
+(-0.707 0)
+and to translate the transformed result a 100 pixels to the right
+and a 100 pixels down we specify the vector (100px, 100px) column vector*/
+p.matrix-transformed{
+    background-color: aqua;
+    transform: matrix(0.707, -0.707, 1.414, 0, 100, 100);
+}

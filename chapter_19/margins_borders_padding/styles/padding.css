@@ -1,0 +1,84 @@
+/*CSS style sheet to add padding to the elements of the css_padding HTML document
+. It showcases 4 different degrees of padding applied to div elements.
+Padding in CSS is the inner most level of the box model and adds separation
+between the border of an element and its contents*/
+
+/*This two rules add styling to inner and outer div elements with no padding
+in the outer element. This makes the inner side of the surrounding element 
+coincide with the inner div element.*/
+.no-padding{
+    padding:0%;
+    border: solid slategray;
+    margin: 10px;
+}
+
+
+.no-padding-children{
+    background-color: lightgreen;
+    text-align: center;
+}
+
+/*This two rules add styling to inner and outer div elements with a small
+padding in the outer element. This creates a slight separation between the
+ineer element and the outside element's border.*/
+.small-padding{
+    padding: 20px;
+    border: solid slategray;
+    margin: 10px;
+}
+
+.small-padding-children{
+    background-color: lightcyan;
+    text-align: center;
+}
+
+/*This two rules add styling to inner and outer div elements with a moderate
+amount of padding in the outer element. This creates a moderate amount of 
+separation between the inner element and the outside element's border.*/
+.moderate-padding{
+    padding: 40px;
+    border: solid slategray;
+    margin: 10px;
+}
+
+.moderate-padding-children{
+    background-color: lightsalmon;
+    text-align: center;
+}
+
+/*This two rules add styling to inner and outer div elements with a big
+amount of padding in the outer element. This creates a big separation 
+between the inner element and the outside element's border.*/
+.big-padding{
+    padding: 60px;
+    border: solid slategray;
+    margin: 10px;
+}
+
+.big-padding-children{
+    background-color: lightseagreen;
+    text-align: center;
+}
+
+/*This two rules adds styling to inner and outer div elements with an unequal
+padding in the outer element. This creates an unequal separation between the
+inner element and the outside element's border.
+Notice as well that we're adding height to the element. Otherwise, all
+of the outer elements inner space is filled by the padding and the inner element
+is invisible.*/
+.unequal-padding{
+    height: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 80px;
+    padding-right: 80px;
+    border: solid slategray;
+    margin: 10px;
+}
+
+.unequal-padding-children{
+    height: 100%;
+    border: solid black;
+    background-color: goldenrod;
+    text-align: center;
+}

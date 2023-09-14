@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate the concept of specificity in CSS.-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>specificity in CSS</title>
+        <style>
+            @import url('styles/specificity.css');
+        </style>
+    </head>
+    <body>
+
+        <div class='menu1'>
+            Styled by the third rule, since it is the matching rule with
+            higher precedence!
+            <ul>
+                <li>First element.</li>
+                <li>Second element.</li>
+                <li>Third element.</li>
+            </ul>
+        </div>
+        <div id='menu2' class='menu2_class'>
+            This text is styled by the fifth rule, since it is the matching rule with
+            the higher precedence! While the following list elements are styled
+            by the fourth and fifth rules, since they match the ascendant and the
+            elements themselves. In case of attribute conflict, like the case 
+            of the text color, the rules that match the children directly have 
+            higher precedence than that of the antecessor, even it this last one
+            has higher specificity.
+            <ul>
+                <li>Element 1.</li>
+                <li>Element 2.</li>
+                <li>Element 3.</li>
+            </ul>
+        </div>
+    </body>
+</html>

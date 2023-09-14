@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate the use of Timeouts and Intervals in 
+Javascript-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Timeouts & Intervals</title>
+    <style>
+        @import url('styles/javascript_timeouts_and_intervals.css');
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Bruno+Ace" type="text/css">
+    <script src="../global_scripts/access_functions.js"></script>
+    <script>
+        
+        already_started = false
+        //Displays a Date object with the format HH:mm:ss
+        function displayTime(){
+            let timer = document.getElementsByClassName("timer")[0]
+            let secs = time.getSeconds() >= 10 ? time.getSeconds() : "0" + time.getSeconds()
+            let mins = time.getMinutes() >= 10 ? time.getMinutes() : "0" + time.getMinutes()
+            let hours = time.getHours() >= 10 ? time.getHours() : "0" + time.getHours()
+            timer.innerText = hours+":"+mins+":"+secs
+        }
+
+        //Adds a second to the time global variable
+        function clock(){
+            time.setSeconds(time.getSeconds() - 1)
+            displayTime(time)
+        }
+        
+        //Stops the interval for the timer clocking using the inter_handler variable
+        //Reenables the timer
+        function stopTimer(){
+            clearInterval(inter_handler)
+            alert("Time's up!")
+            O("submit-buttom").style.visibility = "visible"
+            already_started = false
+        }
+
+        //Starts the timer when the button "Start timer" is pressed
+        function startTimer(){
+            if(!already_started){
+            already_started=true
+            //Fetches the hours, minutes and seconds from the different input fields
+            let num_secs = O("seconds-input").value
+            let num_mins = O("minutes-input").value
+            let num_hours = O("hours-input").value
+            time = new Date()
+            time.setSeconds(num_secs)
+            time.setMinutes(num_mins)
+            time.setHours(num_hours)
+            displayTime()
+            let timeout_period = num_secs*1000 + (num_mins*60*1000) + (num_hours*3600*1000)
+            inter_handler = setInterval(clock, 1000)
+            setTimeout("stopTimer()", timeout_period)
+            O("submit-buttom").style.visibility = "hidden"
+            return false
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Timing out during the intervals of time</h1>
+    <br>
+    <!--Input form to input the time desired for the timer-->
+    <form onsubmit="startTimer(); return false">
+    <!--The fieldset tag encapsulates several components, allowing them to have a
+    common legend and label-->
+    <fieldset>
+        <legend>HH:MM:SS</legend>
+        <input type="number" max="24" min="0" class="time-input" placeholder="00" id="hours-input" value="00">:
+        <input type="number" max="59" min="0" class="time-input" placeholder="00" id="minutes-input" value="00">:
+        <input type="number" max="59" min="0" class="time-input" placeholder="00" id="seconds-input" value="00">
+        <br>
+        <input type="submit" value="Start Timer" id="submit-buttom">
+    </fieldset>
+    </form>
+    <div class="timer-container">
+        <div class="timer">
+            00:00:00
+        </div>
+    </div>
+</body>
+</html>

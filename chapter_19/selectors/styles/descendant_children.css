@@ -1,0 +1,12 @@
+/*CSS document to style several children of HTML tags
+inside of the css_descendant_children html document using both descendants
+and children selectors*/
+
+/*This rule will apply to both of the <i> tags inside of the document,
+since both are direct or indirect descendants of a <p> tag*/
+span i {text-decoration: underline;}
+
+/*On the other hand, this rule will apply only to the first <i> tag,
+since it's a direct descendant (or child) of the tag, while the second
+tag is not*/
+span > i {color: goldenrod}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of simple paths 
+canvas to draw colored areas in an HTML canvas. It does it 
+by drawing a pentagon.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>The Pentagon</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Some heading</h1>
+    <canvas id="canvas-element" width="500px" height="500px"></canvas>
+    <script>
+        
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+        //Selects the width of the lines that'll be drawn on the canvas
+        context.lineWidth = 5
+        //Selects the color of the line
+        context.strokeStyle = "darkred"
+        //Selects the color (or gradient) with which the path will be filled
+        context.fillStyle = "darkblue"
+        context.beginPath()
+        
+        //Initialization of the variables used to draw the pentagon (radius of the circle used
+        //to draw it, initial radians, number of edges in case another figure
+        //wants to be drawn, etc.)
+        center = []
+        center.push(canvas.width/2.0)
+        center.push(canvas.height/2.0)
+
+        let size = 100
+        let radians = 3.0*(Math.PI/2.0)
+        let ini_pos = [center[0] + size*Math.cos(radians), center[0] + size*Math.sin(radians)]
+        context.moveTo(ini_pos[0], ini_pos[1])
+        let num_edges = 5.0
+        let pie_piece = (2.0*Math.PI)/num_edges
+        radians+= pie_piece
+        
+        //Loop around a circle to draw a figure with the specified number of edges
+        for(i = 1; i < num_edges; i++, radians+=pie_piece){
+
+            let x = center[0] + Math.cos(radians) * size
+            let y = center[1] + Math.sin(radians) * size
+
+            context.lineTo(x, y)
+            
+        }
+        context.closePath()
+        //Fills the area inside of the current path
+        context.fill()
+        //Draws a border around the pentagon by materialing the path
+        context.stroke()
+    </script>
+</body>
+</html>

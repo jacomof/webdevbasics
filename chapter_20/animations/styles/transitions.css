@@ -1,0 +1,55 @@
+/*CSS style sheet to demonstrate the use of animations in CSS.
+It styles the HTML document css_transitions.htm.
+Transitions make it possible to change the property of an element 
+during a certain period of time, giving the document a much more
+dynamic feel to it without the need of a javascript script.
+Animations have four main properties:
+-transition-property -> Properties to transition (may be a one or more properties, or all
+to select them all)
+-transition-delay -> period of time between when a property changes and when
+it starts to transition
+-transition-duration -> describes how long does the transition last.
+-transition-timing-function -> describes how the property changes during the
+duration of the transition. May be linear, ease (to start slowly), 
+ease-in (to start slowly and go quickly until finished) ease-out (start fast,
+get significantly slower at the end of the transition) etc.
+Custom transition timings can also be created using the cubic-bezier 
+function.
+*/
+
+div{
+    background-color: cadetblue;
+    font-weight: bold;
+    width: 100px;
+    margin-left: 200px;
+}
+
+
+/*The rule applied to the first element gradually rotates it 360 degrees over 
+a period of 1 second when the element is hovered over. Observe how the
+property returns to its initial state once you stop hovering the element (
+that is, the transition happens backwards)*/
+#first-element{
+    transition-property: transform;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+}
+
+#first-element:hover{
+    transform: rotate(360deg);
+}
+
+/*The rules applied to the second element gradually changes its color (starting
+slow, ending fast) over a period of 0.5s from blue to brown and with a delay
+of 1 second. This happens when the mouse hovers over the element.
+ It uses the shorhand syntax of the transition property 
+ (it defines the different transition properties with the order: 
+ properties (1), duration (2), timing (3) & delay (4))*/
+#second-element{
+    transition: background-color 0.5s ease-in 1s;
+}
+
+#second-element:hover{
+    background-color: brown;
+}
+

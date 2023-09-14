@@ -1,0 +1,62 @@
+<html>
+    <head><title>Exception time</title></head>
+    <body>
+        <h2>Division by 0</h2>
+        <script> <!--
+            x=5/0;
+            document.write("5 divided by 0 equals: " + x + " in javascript<br>");
+            document.write("Surprisingly, it doesn't cause an exception. javascript is weird dude!<br>");
+            document.write("<h2>True exception example</h2>\
+            <p>Now a true example of an exception. It's called the \"undefinedReference\" exception and it's caused when referencing some variable or function \
+                that hasn't been defined previously. Observe!</p>")
+            try{
+                document.write("Calculating the sum of undefined variables a and b...<br>")
+                x = a+b;
+            }catch(e){
+                document.write("Some variables haven't been initiliazed!<br>")
+                console.log(e);
+            }finally{
+                document.write("Exception handling stopped!");
+            }
+
+        //--></script>
+        <h2>finally block</h2>
+        <p>finally blocks are always executd before any control flow statements inside the try and catch blocks. Watch!</p>
+        <script>
+            function excepting(){
+                try{
+                    document.write("Some calculations done here :3<br>");
+                    throw new SyntaxError("hello");
+                }catch(e){
+                    if(e instanceof SyntaxError){
+                        document.write("There is some error in the code's syntax! Get it fixed now you minion!<br>");
+                    }
+                    console.log(e)
+                    return 1
+                }finally{
+                    document.write("Code execution finished. What a journey :)<br>");
+                }
+            }
+            document.write("Executing excepting function. Got return code: " + excepting() + "<br>");
+        </script>
+        <p>Return statements of finally blocks overwrite return statements of the other two blocks. Watch again!</p>
+        <script>
+            function excepting2(){
+                try{
+                    document.write("Some calculations done here :3<br>");
+                    throw new SyntaxError("hello");
+                }catch(e){
+                    if(e instanceof SyntaxError){
+                        document.write("There is some error in the code's syntax! Get it fixed now you minion!<br>");
+                    }
+                    console.log(e)
+                    return "catch";
+                }finally{
+                    document.write("Code execution finished. What a journey :)<br>");
+                    return "finally";
+                }
+            }
+            document.write("Executing excepting2 function. Got return code: " + excepting2() + "<br>");
+        </script>
+    </body>
+</html>

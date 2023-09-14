@@ -1,0 +1,107 @@
+/*CSS document to style the cross_site_messaging section of the website, which showcases the use of cross site communication communication capabilities of HTML5.*/
+
+/*---> Container styles */
+html, body{
+    height: 100%;
+}
+
+/*Container of the main section of the website, where the message container will be placed and all relevant content will reside
+It mainly defines the geometry where the main elements will reside, margins, borders, background colors and the type of arrangement
+of the elements that'll be used (in this case, a column wise flex box which places elements vertically and shrinks them when they overflow)*/
+#main-section-container{
+    width: 80%;
+    border-left: black solid 2px;
+    border-right: black solid 2px;
+    border-bottom: black solid 2px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    height: 100%;
+    background-color: rgb(212, 236, 212);
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+/*This is the top level container that mainly defines the background of the application*/
+.background-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+}
+
+/*Container where all the messages are rendered. It mainly defines a margin and the vertical overflow behavior, which is to create a scrollbar
+once it runs out of space*/
+#messages-container{
+    height: 100%;
+    overflow-y: auto;
+    margin-bottom: 25px;
+}
+
+/*Container of the textarea element where messages are typed and the send button. It exists mainly to arrange to arrange 
+these elements horizontally instead of vertically by using a row-wise flex-box display.*/
+.input-container{
+    display: flex;
+    flex-direction: row;
+}
+
+/*-----------------------------------------------------------*/
+
+/*---> Individual elements*/
+
+
+/*Style of the textarea where messages are typed. We set its width to a 100% in order to fill out the entire space it has available and
+not be restrained by its default dimensions.*/
+#message-input{
+    resize: none;
+    width: 100%;
+    margin-right: 20px;
+    padding: 7px;
+}
+
+
+/*Style of the button used to send messages. It defines its dimensions and the background image (source) used to represent the button visually.
+In order for the logo to render correctly we set the background color to a fully transparent one and set the images dimensions and 
+no-repeat property (for it to appear only once)*/
+.message-send-button{
+    width: 55px;
+    height: 55px;
+    padding: 10px;
+    background-image: url(../images/send_logo_resized.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: rgba(1,1,1,0);
+    align-self: center;
+}
+
+/*General style of all messages. It defines the border, dimensions (fit content, for the message box to wrap around the text), margins to separate
+the messages and paddding inside to leave some breathing space to the text. It also defines the font, monospace, to give the font a more computer-like
+appearence and the font size.*/
+.message{
+    text-align: right; 
+    width: fit-content; 
+    border: 2px black solid; 
+    border-radius: 8px;
+    padding: 3px;
+    margin-bottom: 10px;
+    font-size: 11pt;
+    font-family: monospace;
+}
+
+/*Style of the messages send inside of the messages container. It arranges them to the right and sets their distinctive background color.*/
+.send-message{
+    margin-left: auto;
+    background-color: rgb(108, 236, 108);
+}
+
+/*Style of the messages send inside of the messages container. It arranges them to the left and sets their distinctive background color.*/
+.received-message{
+    background-color: rgb(142, 204, 233);
+}

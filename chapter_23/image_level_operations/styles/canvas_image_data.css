@@ -1,0 +1,29 @@
+/*Style sheet used in the canvas_image_data
+HTML document of the 22nd chapters' exercises.*/
+
+h1{
+    font-weight: bold; 
+    text-decoration: black solid underline;
+}
+
+h1::first-letter{color: darkred; font-size: larger}
+
+img{
+    border: 10px solid darkgoldenrod;
+    border-radius: 6px;
+}
+
+canvas{
+    border: 4px solid brown;
+    border-radius: 6px;
+}
+
+figure{
+    display: inline-block;
+    margin-bottom: 40px;
+}
+
+figure > figcaption{
+    text-align: center;
+    color: rgb(35, 82, 35)
+} 

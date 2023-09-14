@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Client side validation</title>
+    <style>
+        .signup{
+            border: 1px solid #999999;
+            font: normal 14px helvetica;
+            color: #444444;
+        }
+    </style>
+    <script>
+        function validateForm(form){
+            fail=""
+            fail+=validateForename(form.forename.value);
+            fail+=validateSurname(form.surname.value);
+            fail+=validateUsername(form.username.value);
+            fail+=validatePassword(form.password.value);
+            fail+=validateAge(form.age.value);
+            fail+=validateEmail(form.email.value);
+            if(fail=="") return true;
+            else {alert(fail); return false;}
+        }
+    </script>
+    </head>
+    <body>
+        <script src="scripts/validation.js"></script>
+        <table border="0" cellpadding="2" cellspacing="5" bgcolor="#eee">
+            <th colspan="2" align="center">Signup form</th>
+            <form method="post" file="server_side_validation.php" onsubmit="return validateForm(this)">
+                <tr><td>Forename</td><td><input type="text" maxlength="32" name="forename"></td></tr>
+                <tr><td>Surname</td><td><input type="text" maxlength="32" name="surname"></td></tr>
+                <tr><td>Username</td><td><input type="text" maxlength="16" name="username"></td></tr>
+                <tr><td>Password</td><td><input type="text" maxlength="64" name="password"></td></tr>
+                <tr><td>Age</td><td><input type="number" max="200" min="-5" name="age"></td></tr>
+                <tr><td>Email</td><td><input type="text" maxlength="64" name="email"></td></tr>
+                <tr><td colspan="2" align="center"><input type="submit" value="Signup"></td></tr>
+            </form>
+        </table>
+    </body>
+</html>

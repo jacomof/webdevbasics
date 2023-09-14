@@ -1,0 +1,13 @@
+/*General style sheet for chapter 22 exercises*/
+
+h1{
+    font-weight: bold; 
+    text-decoration: black solid underline;
+}
+
+h1::first-letter{color: darkred; font-size: larger}
+
+canvas{
+    border: 2px dotted black;
+    border-radius: 6px;
+}

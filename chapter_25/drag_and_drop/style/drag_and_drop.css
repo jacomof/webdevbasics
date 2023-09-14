@@ -1,0 +1,46 @@
+/*CSS document to style the drag_and_drop HTML document, which showcases the use of drag and drop in HTML5.*/
+
+/*Style of the main section of the web site, where the different shapes and containers are placed.
+It mainly defines the boundaries of the interactive application, the style of its borders, the margin and its background color.*/
+#main-section-container{
+    margin-top: 2%; 
+    width: 80%;
+    border: black solid 2px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(250, 250, 250);
+}
+
+/*CSS rule to extend the html and body elements to cover the entire viewport.*/
+html, body{
+    height: 100%;
+}
+
+/*Common style properties of the shape's destination and origin sections.
+It distributes the elements it contains horizontally leaving space both between them and between the margin (justify-content: space-around)*/
+.container-class{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-around;
+    border: solid darkslategray 2px;
+}
+
+/*Style of the section of the destination sockets.*/
+#destination-container {
+    background-color: lightblue;
+}
+
+/*Style of the section of the containers where the shapes are originally palced.*/
+#source-container{
+    background-color: lightcyan;
+}
+
+/*Style of the containers of the images that represent the shapes and its sockets. Its purpose is to define minimum height and width dimensions so the div don't
+collapse once the element they contain are removed.*/
+.img-container{
+    height: 200px;
+    width: 200px;
+}

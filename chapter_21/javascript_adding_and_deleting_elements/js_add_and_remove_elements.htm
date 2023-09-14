@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate the use of javascript to add, 
+remove and hide different HTML elements.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Addition and removal in JS</title>
+    <style>
+        @import url('styles/js_add_and_remove_elements.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+    <script>
+    /*Creates a series of div element with an image and a 
+    button inside of them using the createElement and
+    appendChild functions, which create a DOM element 
+    and add it to the tree, respectively.*/
+    function populateTheKingdom(populateButton){
+        let subjects = ['sub1', 'sub2', 'sub3', 'sub4']
+        for(const sub of subjects){
+            container = document.createElement("div")
+            container.id = sub
+            container.style.marginTop = "60px"
+            container.style.marginBottom = "60px"
+
+            portrait = document.createElement("img")
+            portrait.src = "http://www.joaqwebsite.com/test/chapter_21/javascript_adding_and_deleting_elements/images/peasent.jpeg"
+            portrait.width = 100
+            portrait.height = 150
+            portrait.style.display = "block"
+            portrait.style.margin = "auto"
+            container.appendChild(portrait)
+            
+            button = document.createElement("button")
+            button.innerText = "Execute :("
+            button.onclick = function(){executeSubject(sub)}
+            button.style.display = "block"
+            button.style.marginLeft = "auto"
+            button.style.marginRight = "auto"
+            button.style.marginTop = "20px"
+            container.appendChild(button)
+            
+            document.body.appendChild(container)
+        }
+
+        console.log("Populating your empire!")
+        par = populateButton.parentNode
+        populateButton.remove()
+        let tmp = par.tagName
+
+    }
+
+    /*Removes the button and hides the image of one of the
+    created div elements once its respective button is pressed.
+    To do so it uses the remove function of the DOM API and
+    the visibility CSS property, respectively. 
+    */
+    function executeSubject(sub){
+        let subject = O(sub)
+        button = subject.getElementsByTagName("button")[0]
+        button.remove()
+        //This forces the document to be refreshed,
+        //to avoid delay.
+        let tmp = subject.offsetTop
+        portrait = subject.getElementsByTagName("img")[0]
+        //Once hidden, the element will still occupy space
+        //in the document.
+        portrait.style.visibility = "hidden"
+        //To collapse it, we use the diplay CSS property
+        //and assign it to "none".
+        portrait.style.display = "none"
+    }
+    </script>
+</head>
+<body>
+    <h1>Removal is the policy. Addition is the key.</h1>
+    <button class="royal-button"
+    onclick="populateTheKingdom(this)">Populate the kingdom</button>
+    <br>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+/*CSS style sheet to style the css_div_vs_span.htm HTML document.
+It styles a div and span tag to showcase the difference in behavior
+of these tags.*/
+
+#div-tag {background-color: greenyellow; font-weight: 700;
+        border-color: orange; border-width: 2px; border-style: solid;}
+#span-tag {background-color: aquamarine; font-weight: 700;
+    border-color: red; border-width: 2px; border-style: solid;}

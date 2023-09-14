@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the different configurations of line caps available
+when drawing lines using paths inside of an HTML5's Canvas.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Line Caps</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Some heading</h1>
+    <canvas id="canvas-element" width="500px" height="500px"></canvas>
+    
+    <script>
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+
+        //Defining the line width and color
+        context.strokeStyle = 'lightgreen'
+        context.lineWidth = 10
+
+        //Drawing a simple triangular shape using the butt cap configuration.
+        //This draws a simple square cap at the end of the line and its the default value
+        context.lineCap = 'butt'
+        context.beginPath()
+        context.moveTo(50, 100)
+        context.lineTo(100, 50)
+        context.lineTo(150, 100)
+        context.stroke()
+
+        //Drawing a simple rectangular shape using the round cap configuration.
+        //This draws a simple semi-circle at the end of the line.
+        context.lineCap = 'round'
+        let y_offset = 100
+        context.beginPath()
+        context.moveTo(50, 100+y_offset)
+        context.lineTo(50, 50+y_offset)
+        context.lineTo(150, 50+y_offset)
+        context.lineTo(150, 100+y_offset)
+        context.stroke()
+
+        //Drawing a simple rectangular shape, this time up-side down.
+        //It uses the square cap configuration, which draws a square at the ends of the line
+        //using as width and height the line's width.
+        //In this example, the line itself is drawn in colar red, while the cap is drawn
+        //in the default light green color.
+        context.lineCap = 'square'
+        y_offset = 200
+        context.beginPath()
+        context.moveTo(50, 50+y_offset)
+        context.lineTo(50, 100+y_offset)
+        context.lineTo(150, 100+y_offset)
+        context.lineTo(150, 50+y_offset)
+        context.stroke()
+
+        context.lineCap = 'butt'
+        context.strokeStyle = 'lightcoral'
+        y_offset = 200
+        context.beginPath()
+        context.moveTo(50, 50+y_offset)
+        context.lineTo(50, 100+y_offset)
+        context.lineTo(150, 100+y_offset)
+        context.lineTo(150, 50+y_offset)
+        context.stroke()
+
+
+    </script>
+</body>
+</html>

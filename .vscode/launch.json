@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch my cool app",
+      "url": "http://localhost/joaq_website/webdevbasics/${relativeFile}",
+      "webRoot": "/var/www/html/",
+    },
+    {
+      "type": "chrome",
+      "request": "attach",
+      "name": "Attach to chrome",
+
+    }
+  ]
+} 

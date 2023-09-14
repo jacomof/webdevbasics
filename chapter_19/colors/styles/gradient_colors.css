@@ -1,0 +1,54 @@
+/*CSS document to style the css_gradient_colors.htm HTML document.
+It defines several style classes to produce color gradients in the back-
+ground of the different elements of the document.*/
+
+/*This rule applies a horizontal (left to right) gradient
+from an orange-like color to a green-like color. The rule is intended to 
+be applied to a span element inside of the document.
+Note that several similar declarations are used. This is to 
+provide support to a wide range of browsers (the prefixed rules
+are used in some specific family of browsers, e.g. -moz
+for mozilla based browsers)*/
+.horizontal-gradient-phrase{
+    background: linear-gradient(left, #F60, #6F0);
+    background: -moz-linear-gradient(left, #F60, #6F0);
+    background: -webkit-linear-gradient(left, #F60, #6F0);
+    background: -o-linear-gradient(left, #F60, #6F0);
+    background: -ms-linear-gradient(left, #F60, #6F0);
+}
+
+/*This rule applies a horizontal (left to right) gradient
+from an pure red color to a pure blue color. 
+The rule is intended to be applied to a block level element.*/
+.horizontal-gradient-paragraph {
+    background: linear-gradient(left, #f00, #00f);
+    background: -webkit-linear-gradient(left, #f00, #00f);
+    background: -moz-linear-gradient(left, #f00, #00f);
+    background: -o-linear-gradient(left, #f00, #00f);
+    background: -ms-linear-gradient(left, #f00, #00f);
+}
+
+/*This rule applies a vertical (top to bottom) gradient
+from a pure green color to a pure blue color.
+The rule is intended to be applied to a block level element.*/
+.vertical-gradient-paragraph {
+    background: linear-gradient(top, #0f0, #00f);
+    background: -webkit-linear-gradient(top, #0f0, #00f);
+    background: -moz-linear-gradient(top, #0f0, #00f);
+    background: -o-linear-gradient(top, #0f0, #00f);
+    background: -ms-linear-gradient(top, #0f0, #00f);
+    color: white;
+    font-weight: bolder;
+}
+
+/*This rule applies a diagonal (top left to bottom right) gradient
+from a pure green color to a pure yellow color.
+The rule is intended to be applied to a block level element.*/
+.diagonal-gradient-paragraph{
+    background: linear-gradient(top left, #0f0, #ff0);
+    background: -webkit-linear-gradient(top left, #0f0, #ff0);
+    background: -moz-linear-gradient(top left, #0f0, #ff0);
+    background: -o-linear-gradient(top left, #0f0, #ff0);
+    background: -ms-linear-gradient(top left, #0f0, #ff0);
+    font-weight: bold;
+}

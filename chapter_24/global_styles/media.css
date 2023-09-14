@@ -1,0 +1,77 @@
+/*General style sheet for chapter 24 exercises on HTML media tags.*/
+
+h1{
+    font-weight: bold; 
+    text-decoration: black solid underline;
+}
+
+h1::first-letter{color: darkred; font-size: larger}
+
+audio{
+    border: 2px solid darkgrey;
+    border-radius: 6px;
+    margin: 10px;
+}
+
+video{
+    border: 3px solid black;
+    border-radius: 6px;
+    margin: 10px;
+}
+
+.custom-audio-player{
+    background: darkolivegreen;
+    width: 200px;
+    height: 70px;
+    padding: 10px;
+    border: solid black 2px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    margin: 10px;
+}
+
+.custom-audio-player-button{
+    margin: 5px;
+}
+
+.custom-audio-player-logo{
+    width: 50px;
+}
+
+.custom-video-player{
+    padding: 10px;
+    background: gray;
+    border: 2px solid black;
+    border-radius: 2px;
+    display: grid;
+    grid-template-areas: 
+        "vid vid vid"
+        "c but1 but2";
+    grid-template-columns: 1fr 75px 75px 1fr;
+    grid-template-rows: 1fr 50px;
+    column-gap: 25px;
+}
+
+.custom-video{
+    grid-area: vid;
+}
+
+.custom-video-player-button-1{
+    /*margin: 500px;*/
+    /*width: 50px;*/
+    height: 50px;
+    grid-area: but1;
+}
+
+.custom-video-player-button-2{
+    /*margin: 5px;*/
+    /*width: 50px;*/
+    height: 50px;
+    grid-area: but2;
+}
+
+.custom-video-player-logo{
+    width: 50px;
+    grid-area: log;
+}

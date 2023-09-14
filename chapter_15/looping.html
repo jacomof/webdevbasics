@@ -1,0 +1,51 @@
+<html>
+    <head><title>Looping around</title>
+        <script>
+            function processList(){
+                listString = liststring.value;
+                arrayVals = listString.split(/\s*(?:,|$)\s*/);
+                for(val of arrayVals)
+                {
+                    loopSection.innerHTML+=("Inserted value " + val + " inside of the list loop section <br>");
+                }
+            }
+            function printRange(){
+                count=1;
+                upLimit = parseInt(rangenumber.value);
+                if(upLimit != NaN && upLimit > 1){
+                    do{
+                        doWhileSection.innerHTML+=count+", ";
+                    }while(++count<upLimit);
+
+                    doWhileSection.innerHTML+=count+"<br>";
+                }else
+                    doWhileSection.innerHTML="Unsopported input enterd for this section!<br>"
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Loop around the town</h1>
+        <h2>For loop section</h2>
+        <p>Ten iterations loooooooooop</p>
+        <script>
+            
+            for(i=0;i<10;i++){
+                document.write("Iteration number " + i + " of the loop <br>");
+            }
+        </script>
+        <br>
+        <h2>Loop list section</h2>
+        <label> Enter elements of a list separated by commas (,): <input type="text" id="liststring"></label>
+        <button id="enterValuesButton" onclick="processList()">Enter list</button>
+        <div id="loopSection"></div>
+        <h2>do while loop section</h2>
+        <label> Enter number to generate range (bigger than one): <input type="number" id="rangenumber" min="2"></label>
+        <button onclick="printRange()">Enter number</button>
+        <div id="doWhileSection"></div>
+        
+
+
+        
+    </body>
+
+</html>

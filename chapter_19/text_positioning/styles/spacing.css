@@ -1,0 +1,20 @@
+/*CSS document to style several paragraphs of the css_spacing.htm
+HTML document. This is done to showcase how to modify the spacing
+of words, letters and lines inside of HTML using CSS.*/
+
+/*This rule applies a word spacing of 5 pixels to paragraph 1*/
+#paragraph1 {word-spacing: 10px;}
+
+/*This rule applies a letter spacing of 5 pixels and a space between
+between lines of 10 pixels of paragraph 2*/
+#paragraph2 {letter-spacing: 5px; line-height: 10px;}
+
+/*This rule applies an indentation of 20 pixels and a word spacing of
+20 pixels to paragraph 3*/
+#paragraph3 {word-spacing: 20px; text-indent: 20px; line-height: 15px;}
+
+/*This last rule applies a letter spacing of 20 pixels, a word spacing of
+10 pixels and a line separation of 30 pixels. It also adds a dotted overline
+on top of the text.*/
+#paragraph4 {letter-spacing: 20px; word-spacing: 10px; line-height: 30px;
+            text-decoration:overline dotted;}

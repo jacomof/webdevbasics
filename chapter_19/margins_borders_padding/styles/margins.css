@@ -1,0 +1,29 @@
+/*Style sheet to style the css_margins.htm document. It demonstrate
+how to add margins and borders to separate different elements inside
+HTML documents.
+The last two rules showcase a feature of marging called collapsing,
+in which two overlapping elements will be separated by their margins
+by using only the bigger margin of any of them. This doesn't happen
+with inline elements and absolutely positioned elements.
+You can see that this doesn't happen with the first two border separated
+objects, because borders don't collapse.*/
+
+.border-spaced{
+    margin-left:auto;
+    margin-right:auto;
+    border-width: 200px;
+    border-color: aquamarine;
+    border-style: solid;
+    background-color: brown;
+}
+
+
+.margin-spaced{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 200px;
+    background: magenta;
+    width: 60px;
+    word-wrap: break-word;
+}

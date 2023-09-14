@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of 3D transforms in CSS-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>3D transforms</title>
+    <style>
+        @import url('styles/3D_transforms.css');
+    </style>
+</head>
+<body>
+    <h1>3D transforms in the Matrix</h1>
+    <div>
+        <p class="translated">
+            This is text that will be translated to another position in 
+            the z axis.
+        </p>
+    </div>
+    <br>
+    <br>
+    <div class="electronics-image-container">
+        <img src="images/electronics.jpg" width="500px" class="rotated">
+    </div>
+    <br>
+    <div class="open-image-container">
+        <img src="images/open2.jpg" width="500px" class="scaled">
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="matrix-transformed-container">
+        <p class="matrix-transformed">
+            This text is skewed, rotated and translated using CSS's 
+            "matrix" function. This function takes 16 arguments, the first
+            12 representing a 3D transform matrix, 
+            and the last 4 the 3D translation applied to it. 
+        </p>
+    </div>
+</body>
+</html>

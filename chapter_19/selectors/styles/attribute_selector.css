@@ -1,0 +1,43 @@
+/*CSS style sheet to style the css_attribute_selector.htm HTML document.
+It demonstrate the use of the attribute selector, which selects the HTML
+elements that have a certain attribute (e.g.
+a particular font, color, etc.). Additionally, it can select the elements
+which have specific values within those attributes.
+Is also important to note that in terms of specificity attribute selectors
+are equivalent to class selectors.*/
+
+/*Rule to select and style text input fields using an attribute selector.*/
+input[type="text"]{
+    border: 1px red dotted;
+    height: 40px;
+    width: 100px;
+    color: red;
+}
+
+/*Since the attribute selector has the same specificity as classes,
+this rule, being a tag selector, will be applied to none of the 
+elements since it's overwritten in all of the attribute selectors 
+of the input elements (tag specificity < class specificity)*/
+input{
+    width: 50px;
+}
+
+/*Seemingly equal to the previous rule, this rule demonstrate how the 
+attribute selectors can be used to distinguish between different elements
+with the same tag (in this case, the input tag).*/
+input[type="checkbox"]{
+    width: 40px;
+    height: 40px;
+}
+
+/*Rule to select and style text input fields using an attribute selector.
+This is an alternative way of selecting an element by id without using
+the id # selector. This has the advantage to have a lower specificity.
+(the same specificity of any other attribute selector: the CLASS 
+specificity level).*/
+div[id="willpower"]{
+    color: darkblue;
+    font-weight: 600;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+

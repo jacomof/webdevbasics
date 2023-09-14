@@ -1,0 +1,57 @@
+<html>
+  <script>
+    let options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: [0.01],
+  };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log(entry);
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          
+        } else {
+          entry.target.classList.remove("show");
+        }
+      });
+    }, options);
+  </script>
+  <style>
+      * {
+    background-color: 131313;
+    padding: 0;
+    margin: 0;
+    }
+
+    section {
+      display: grid;
+      place-items: center;
+      align-content: center;
+      min-height: 100vh;
+    }
+    .hidden {
+      opacity: 0;
+      transition: all 4s;
+    }
+    .show {
+      opacity: 1;
+      color: white;
+    }
+  </style>
+<body>
+  <section class="hidden">
+    <h1>Title</h1>
+    <p>Some text</p>
+  </section>
+  <section class="hidden">
+    <h2>More text</h2>
+  </section>
+  <script>
+    const hiddenElements = document.querySelectorAll(".hidden");
+    hiddenElements.forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
+
+

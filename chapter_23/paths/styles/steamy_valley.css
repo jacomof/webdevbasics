@@ -1,0 +1,18 @@
+/*Style sheet used in the canvas_quadratic_curve_to
+HTML document of the 22nd chapters' exercises.*/
+
+h1{
+    font-weight: bold; 
+    text-decoration: black solid underline;
+}
+
+body{
+    background-color: lightgreen;
+}
+
+h1::first-letter{color: darkred; font-size: larger}
+
+canvas{
+    border: 10px dotted brown;
+    border-radius: 6px;
+}

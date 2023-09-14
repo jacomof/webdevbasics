@@ -1,0 +1,23 @@
+<html>
+    <head><title>Explicit conversions</title></head>
+    <body>
+        <script>
+            a = "5.52232";
+            document.write("String " + a + " is converted to int with the value: " + parseInt(a) + "<br>");
+            document.write("String " + a + " is converted to float with the value: " + parseFloat(a) + "<br>");
+            num = 52.2121;
+            document.write("Number " + num + " converted to string transforms into: " + String(num) + "<br>");
+            document.write("Number " + num + " converted to string with precision 2 into: " + num.toPrecision(2) + "<br>");
+            num2 = 525252.21;
+            document.write("Number " + num2 + " converted using exponential notation: " + num2.toExponential(3) + "<br>");
+            d = new Date(2019,5,10);
+            options = {year:'numeric', month:'long', day:'numeric'};
+            document.write("Formatting date " + d + " to: " + d.toLocaleDateString("es-ES", options) + "<br>");
+            bstring = String(false);
+            bnumber = Number(true);
+            document.write("Converting boolean false to string returns: " + bstring +"<br>"); 
+            document.write("Converting boolean true to number returns: " + bnumber +"<br>");
+
+        </script>
+    </body>
+</html>

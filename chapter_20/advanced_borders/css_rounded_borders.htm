@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of rounded borders in CSS.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS round borders</title>
+    <style>
+        @import url('styles/rounded_borders.css');
+    </style>
+</head>
+<body>
+    <h1>Rounding the edges</h1>
+    <!--Div elements with different configurations of round borders.-->
+    <div class="one-rounding">
+        This is a div element with uniform and equal borders across all edges.
+    </div>
+    <div class="two-rounding">
+        This div element's round edges are specified with two arguments.
+        Top left and bottom right edges are equal, just like top right and
+        bottom left corners are equal as well. 
+    </div>
+    <div class="three-rounding">
+        This div element's round edges are specified with three arguments.
+        Top right and bottom left coreners are equal.
+    </div>
+    <div class="four-rounding">
+        This div element's round edges are specified with four arguments.
+    </div>
+    <div class="individual-rounding">
+        This div element's round edges are specified individually through
+        the four properties that define round borders (border-top-left-radius,
+        border-top-right-radius, border-bottom-left-radius & 
+        border-bottom-right-radius). As you can see, the same effect as with
+        the rounding with four arguments can be achieved, since the latter is just
+        a short version of the former.
+    </div>
+    <div class="ellipsis-rounding">
+        This div element has ellipse-shaped borders, since the / operator
+        is used when specifying its borders' rounding.
+    </div>
+</body>
+</html>

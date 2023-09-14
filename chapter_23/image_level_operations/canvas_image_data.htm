@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--This document showcases how to use HTML5's canvas to modify an image with a pixel level
+    operations. This means transforming an image into an array of pixels that we can modify
+    directly and re-write into the canvas. 
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Image Manipulation</title>
+    <style>
+        @import url('styles/canvas_image_data.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>The body cannot live without the mind</h1>
+    <figure>
+        <canvas id="canvas-element" width="1000px" height="800px"></canvas>
+        <figcaption>Fig. 1: Original image with cute horses in a field</figcaption>
+    </figure>
+    <figure>
+        <canvas id="rgb-modified-element" width="1000px" height="800px"></canvas>
+        <figcaption>Fig. 2: Image sent to the <B>MATRIX</B></figcaption>
+    </figure>
+    <script>
+
+
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+        
+
+        //Image center
+        let center = {x: canvas.width/2.0, y: canvas.height/2.0}
+
+        //Original image is loaded from jpg file
+        const image = new Image()
+        image.src = "images/horses.jpg"
+
+        //We add a callback to the onload event of the image, since we only want to execute
+        //the following code once we have all the image data available
+        image.onload = () => 
+        {
+            //Calculate position of the top-left corner of the image
+            let ul_corner = {x: center.x - (image.width/2.0), y: center.y - (image.height/2.0)}
+
+            //Draw the image in the top canvas
+            //The drawImage function of the 2DCanvasContext takes three arguments, an
+            //image object and two numbers representing the position in which to draw 
+            //the image inside of the canvas
+            context.drawImage(image, ul_corner.x, ul_corner.y)
+
+            //Here we obtain the image data of the canvas using the getImageData function.
+            //It takes several arguments, mainly the position from which we want to take
+            //a rectangle shape image portion of the canvas. The two last arguments represent
+            //the size of the rectangle. Here we take all of the horses' image
+            let orig_image_data = context.getImageData(ul_corner.x, ul_corner.y, image.width, image.height)
+            //As a result we obtain an ImageData object, which contains an array with
+            //the image data in a 1D array with the rgba values of all the pixels 
+            //next to each other (the order in which they appear is left to right, top
+            //to bottom). The property of the object with this information is called "data"
+            const orig_data = orig_image_data.data
+
+            //Initialize the base color to which we are going to map the original image
+            const matrix_base_color = {r: 17, g: 194, b: 17}
+            //Here we create a copy of the original image data (deep copy)
+            const mod_data = orig_data.slice()
+
+            //Loop used to modify the pixels of the image. We first transform the pixels
+            //to black and white values (0 representing full black, while 1 representing
+            //full white, with everything in between) by calculating the mean of all three
+            //colors. We then multiply this mean with the base color to obtain the new
+            //mapped color to the "black and green" color space
+            for(i = 0; i < image.height; i++){
+                    for(j=0; j < image.width*4; j+=4){
+
+                    let index = (i*image.width*4) + j
+                    let avg = 
+                    ((orig_data[index+0] + orig_data[index+1] + orig_data[index+2])/3)/255
+                    let new_col = Object.values(matrix_base_color).map(c => c*avg)
+                    mod_data[index+0] = new_col[0]
+                    mod_data[index+1] = new_col[1]
+                    mod_data[index+2] = new_col[2]
+                    mod_data[index+3] = 255
+
+                }
+            }
+
+            //Create a new ImageData object to which we assign the
+            //modified image array, and we assign it the same width and height of the original
+            //image.
+            let modified_image_data = new ImageData(mod_data, image.width, image.height)
+
+            //Obtain the second canvas element in the document and create its 2D context
+            let modified = O("rgb-modified-element")
+            let mod_ctx = modified.getContext("2d")
+
+            //Place the newly create ImageData object inside of the second Canvas,
+            //by utilizing the putImageData function. This function takes three arguments:
+            //an ImageData object containing an image, and the pair of x and y coordinates 
+            //of the image inside of the canvas it'll be drawn in.
+            mod_ctx.putImageData(modified_image_data, ul_corner.x, ul_corner.y)
+            
+        }
+
+
+    </script>
+</body>
+</html>

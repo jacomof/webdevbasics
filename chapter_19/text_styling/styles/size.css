@@ -1,0 +1,51 @@
+/*CSS document to stile the css_font.htm HTML document. It showcases
+the several font size measurements available in CSS.*/
+
+/*Pixels are the little light bulbs your screen is comprised of.
+They may be used to specify the size of text's font in an HTML document
+using CSS.
+37 pixels are about 1cm in most screens*/
+#text1 {font-size: 37px;}
+
+/*Centimiters may be used to specify the size of text in a HTML document 
+using CSS. It's best suited for printed formats.
+*/
+#text2 {font-size: 1cm;}
+
+/*Just like centimiters, milimiters may be used to specify the size of
+text in a HTML document using CSS. It's best suited for printed formats as
+well.
+*/
+#text3 {font-size: 10mm;}
+
+/*Another popular measurement are inches, which is a measurement
+unit common in North America. Given its analogical nature,
+like centimiters is best suited for printed formats*/
+#text4 {font-size: 0.39in;}
+
+/*Points come from a print design background and is a measurement 
+more or less equivalent to 1/72 of an inch. It's best suited for printed
+formats. Given the equivalence between inches and centimiters (one inch 
+is about 2.564 centimiters), a centimiters is: 72pt/in*(1in/2.564cm)~=28pt  */
+#text5 {font-size: 28pt;}
+
+/*An em is a measurement that is equal to the current font size.*/
+#text6 {font-size: 2.37em;}
+
+/*The ex measurement is also related to the current font size.
+ It coincides with the size of the lowercase letter x of the current font.*/
+#text7 {font-size: 5.28ex;}
+
+/*The Percent measurement is also related to the default font-size.
+It represents the ratio between the measurement and the default font-size. 
+For example, a size of 200% is two times the size of the default font size*/
+#text8 {font-size: 237%}
+
+/*The pica measurement is a print typographic measurement, and is equivalent
+to 12 points.*/
+#text9 {font-size: 2.33pc}
+
+#explanation{font-size: 20px; font-family: 'Times New Roman', Times, serif;
+text-align: justify; font-weight: 700;}
+
+
