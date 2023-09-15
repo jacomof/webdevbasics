@@ -1,0 +1,34 @@
+<!--javascript script to practice with associative arrays -->
+<html>
+    <head><title>Guilty by association</title></head>
+    <body>
+        <h1>A crime of passion: case study</h1>
+        <script>
+            //Declaring an associative array with the syntax {key1:value1, key2: value2, ...}
+            $case={
+                "main": "Miller",
+                "second": "John",
+                "lead investigator": "Macintosh",
+                "person of interest": "Peter"
+            }
+            //Accessing array directly with the square brackets operators
+            document.write("A case lead by: " + $case["main"] + "<br>");
+            document.write("Seconded by: " + $case["second"] + "<br>");
+            document.write("Investigating the possible crime of: " + $case["lead investigator"] + "<br>");
+            document.write("Another person of interest is: " + $case["person of interest"] + "<br>");
+            document.write("<br>------------------<br><br>");
+            $evidence={
+                "weapon":"pistol",
+                "dna1": "blood",
+                "dna2": "hair folicules",
+                "chemical evidence": "gun powder",
+                "fingerprints": "present"
+            }
+            //Looping through an associative array with the in operator, which iterates through the set of keys of the array
+            for(key in $evidence){
+                document.write("The piece of evidence of category " + key + " is: " + $evidence[key]);
+                document.write("<br>")
+            }
+        </script>
+    </body>
+</html>

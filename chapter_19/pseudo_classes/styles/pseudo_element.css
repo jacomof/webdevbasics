@@ -1,0 +1,33 @@
+/*CSS style sheet to style the css_pseudo_element.htm HTML document.
+It showcases the use of pseudo-elements in CSS. Pseudo-elements are
+special keywords used to select an specific part of an element.
+For instance, you may use it to style the first line of a paragraph
+element, or the marker of a list of items, as we do in this stylesheet.*/
+
+/*The first line pseudo-element is used here to style the first line of
+the HTML's paragraph. All words are capitalized and the font weight is 
+increased.*/
+p::first-line{
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+/*The first-letter pseudo elements selects the first letter of an element
+containing text in order to style it. In this case it's used to style
+the first letter of the HTML's paragraph by giving it a bigger size,
+a different font and a different color.*/
+p::first-letter{
+    font-size: 2.0em;
+    font-weight: 900;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: brown;
+}
+
+/*The marker pseudo-element selects here the marker-box of the elements 
+of the HTML's list. The rule changes the markers, changing their content
+to be the UTF code of a dog emoji (:3) and increasing their size.
+ */
+li::marker{
+    content: " \1F436";
+    font-size: 1.2em;
+}

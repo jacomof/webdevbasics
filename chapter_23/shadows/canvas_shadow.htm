@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--HTML documents to demonstrate the use of shadows inside of an HTML5's Canvas.
+Shadows can be redendered besides any shape or image drawn on the Canvas.
+In this case it's used to draw the internal and external shadows of a diamnod shaped figure.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Shadows</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>The Shadow Gem &#128142;</h1>
+    <canvas id="canvas-element" width="500px" height="500px"></canvas>
+    
+    <script>
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+
+        //Setting the color and width of the line that will draw a diamond
+        context.strokeStyle = "rgb(110, 50, 110)"
+        context.lineWidth = 5
+        context.lineJoin = "bevel"
+
+        //Code to create a path to draw a diamond shape  
+        context.beginPath()
+        //Call to translate in order to position the diamond inside of the Canvas.
+        context.translate(100, 100)
+        context.moveTo(70, 70)
+        context.lineTo(140, 40)
+        context.lineTo(210, 70)
+        context.lineTo(140, 160)
+        context.lineTo(70, 70)
+        context.lineTo(105, 70)
+        context.lineTo(140, 160)
+        context.lineTo(105,70)
+        context.lineTo(140, 70)
+        context.lineTo(140,160)
+        context.lineTo(140, 70)
+        context.lineTo(175, 70)
+        context.lineTo(140,160)
+        context.lineTo(175, 70)
+        context.lineTo(210, 70)
+
+        //Color used to fill the shape of the path
+        context.fillStyle = "mediumorchid"
+        
+        //Configuring the shadow that will be drawn alongside the diamond
+        //This property configures the color of the shadow
+        context.shadowColor = "black"
+        //This property configures the blurring amount of the shadow. It's a positive number
+        //that doesn't represent pixels, as you may have thought. 
+        context.shadowBlur = 4
+        //Horizontal offset which will be used to place the shadow
+        context.shadowOffsetX = 5
+        //Vertical offset which will be used to place the shadow
+        context.shadowOffsetY = 5
+        //The shadow is drawn when a drawing call is made with a shadow with a non fully 
+        //transparent color set on the shadowColor property
+        context.fill()
+        //Uncomment this code to only enable the shadow on the diamonds outline (no
+        //internal shadows, since the shadow is set to a fully transparent color
+        //before drawing the internal lines of the diamond)
+        //context.shadowColor = "rgba(0,0,0,0)"
+        context.stroke()
+
+
+    </script>
+</body>
+</html>

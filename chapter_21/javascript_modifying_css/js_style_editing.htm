@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of java script to modify
+the style of different HTML elements.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Style editing with JS</title>
+    <style>
+        @import url('styles/js_style_editing.css');
+    </style>
+    <script src="scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Javascript: the styling machine</h1>
+    <br>
+    <button onclick="changeBoxStyle()">Light the boxes</button>
+    <br>
+    <br>
+    <div class="box">
+        This is a box.
+    </div>
+    <br>
+    <div class="box">
+        This is another box.
+    </div>
+    <br>
+    <p id="paragraph1">
+        This is a bland line of text. 
+        <button onclick="changeParagraphStyle()">Make it shine</button>
+    </p>
+    <div class="box">
+        This is a third box.
+    </div>
+    <script>
+        function changeBoxStyle(){
+            styles = C("box")
+            for(s of styles){
+                s.backgroundColor = "orangered";
+                s.color = "black";
+            }
+        }
+
+        function changeParagraphStyle(){
+            let currStyle = S("paragraph1")
+            currStyle.color = "gold"
+            currStyle.backgroundColor = "black"
+            currStyle.textDecoration = "gold solid underline"
+            let currElement = O("paragraph1")
+            currElement.innerHTML = "Not anymore!!"
+        }
+    </script>
+</body>
+</html>

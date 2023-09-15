@@ -1,0 +1,19 @@
+<html>
+    <head><title>Functions</title></head>
+    <body>
+        <script>
+            function maximum(x,y){
+                var a = 1;
+                b = 10;
+                return x > y ? x : y;
+            }
+            document.write("Maximum between 6 and 3 is: " + maximum(6,3) + "<br>");
+            //document.write("The value of a is not accessible: " + a); 
+            /*The previous line causes an error since the value of a is not accessible to script's main scope.
+            This is because a was declared as local inside of the function.*/
+            
+            document.write("The value of b is accessible: " + b);
+
+        </script>
+    </body>
+</html>

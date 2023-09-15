@@ -1,0 +1,26 @@
+/*CSS style sheet to style the css_universal_selector.htm. It showcases the
+use of the universal selector in CSS, which acts as a wildcard to select all
+HTML elements. If preceded or succeded by other selectors, they're the
+ones who condition the selected elements.*/
+
+/*This rules selects all elements that are a child of a div tag,
+and sets their borders to black and adds an underline to the text.*/
+div * {
+    border: dotted black 2px;
+    text-decoration: underline;
+}
+
+/*This rule selects all children of the element with id paragraph*/
+#paragraph > *{
+    text-transform: capitalize;
+}
+
+/*Finally, this rule adds a sufix to all elements inside of the
+body section of the document that are a children of some other element*/
+
+body > * > *::before {
+    content: "Children";
+    font-weight: 700;
+    font-size: 0.8em;
+}
+

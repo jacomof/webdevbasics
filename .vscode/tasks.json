@@ -1,0 +1,8 @@
+{
+    "version": "2.0.0",
+    "command": "firefox",    
+    "windows": {
+        "command": "explorer.exe"
+    },
+    "args": ["${file}"]
+}

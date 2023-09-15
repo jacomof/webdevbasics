@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of geolocation in HTML5, a feature that allows a webpage to know the position of a user.
+This position is calculated either through GPS, or, if not available, through location pinning techniques such as cell tower triangulation
+or using the position of a router with a well known position to which the device is connected.
+To access HTML5 geolocation, the navigator object is used, which is accessed using javascript.
+Additionally, to display the position, google maps implementations is used, through it's google maps platform API.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 geolocation</title>
+    <style>
+        @import url('style/geolocation.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+    <script>
+
+        //Variables to hold the user's current position as a pair of longitude and latituted coordinates.
+        var plong;
+        var plat;
+        //Variable to hold a reference to the Google Maps object that will be displayed in the website.
+        var map;
+
+        //Function executed when the browser is allowed to access the user's position. HTML5 geolocation feature automatically passes the position
+        //of the user to the function if allowed to consult the their position. It then initializes the global plong and plat variables that 
+        //contains the user's current longitudinal and latitudinal coordinates and creates a new JS Google Maps object to be displayed inside
+        //of the div element with the id "map" and centered in the users current position.
+        function success(position){
+
+            plong = position.coords.longitude;
+            plat = position.coords.latitude;
+            
+            //Options object for Google Maps API
+            let map_opts={
+                //Center of the Map
+                center: {lat: plat, lng: plong},
+                //Level of zoom of the Map (the higher the number the higher the zoom applied)
+                zoom: 12
+            };
+
+            //New map created and initialized. As argument, we supply the div element which will contain the map and the previously mentioned options object.
+            map = new google.maps.Map(document.getElementById('map'), map_opts);
+
+        }
+
+        //Function executed when the browser is not allowed to access the user's position.
+        function failure(err){
+            O("map-container").innerHTML = 'Geolocation not enabled!';
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+            //We hide the button to avoid execution errors.
+            S("but1").visibility = 'hidden';
+            S("but2").visibility = 'hidden';
+        }
+
+        //Initializes the map once the JS Google Maps API have been loaded
+        function initMap(){
+            console.log('Helloooo')
+            //This function access the geolocation of the user with the method explained above.
+            //It takes two arguments: a first function for when the browser is allowed to access the position of the user (either because the user denied the request
+            //or the browser denied it automatically for security reasons),
+            //and a second function for when the browser isn't allowed to access the position of the user.
+            navigator.geolocation.getCurrentPosition(success, failure)
+        }
+
+        //Sets the current map position to the current position of the user
+        function setCurrentPosition(){
+            map.setCenter({lat: plat, lng: plong});
+        }
+
+        //Sets the current map position to a random position.
+        function setRandomPosition(){
+            randlat = Math.floor(Math.random()*90.0);
+            randlng = Math.floor(Math.random()*180.0);
+            map.setCenter({lat:randlat, lng:randlng});
+        }
+    </script>
+    <!--Code used to include the google maps javascript api inside of the website. Here you should use your own api token
+    that you can obtain by creating a Google Cloud account and signing up for the Google Maps API service. As of the making
+    of this video, the API is for 200USD worth of API Calls each month.-->
+    <script 
+        async
+            src="https://maps.googleapis.com/maps/api/js?key=[Use your google maps api token here]&callback=initMap">
+    </script>
+    <script>
+        console.log('Hello there!!')
+    </script>
+</head>
+<body>
+    <div id="header-container">
+    <h1>Pinning you down</h1>
+    </div>
+    <div id="main-container">
+        <div id="side-margin-left"></div>
+        <div id="map-container">
+            <div id="map"></div>
+            <button class="map-button" id="but1" onclick="setRandomPosition()">Go wild!</button>
+            <button class="map-button" id="but2" onclick="setCurrentPosition()">Reset Position</button>
+        </div>
+        <div id="side-margin-right"></div>
+    </div>
+    <script>
+        console.log('Hello there!!')
+    </script>
+</body>
+</html>

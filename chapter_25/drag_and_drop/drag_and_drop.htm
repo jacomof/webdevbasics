@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--This is an HTML document created to demonstrate the use of HTML5's drag and drop feature.
+It implements a simple matching game in which a set of three shapes has to be matched with an empty socket with the same shape.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Drag & Drop</title>
+    <style>
+        @import url('../global_styles/global_style.css');
+        @import url('style/drag_and_drop.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+    <script>
+        
+        //Callback function of the dragstart event, which is called when an element starts being dragged.
+        function drag(event){
+
+            //We access the element which received the dragstart event, which is the image of the shape being dragged.
+            let targ_id = event.target.id;
+
+            //We save the id of the element in the dataTransfer object of the event. This property is used to transfer data between receivers of an event,
+            event.dataTransfer.setData('text', targ_id);
+
+        }
+
+        //Callback function of the ondragover event to prevent its default event handling when an element is dragged on top of a target element.
+        function allow(event){
+
+            //We prevent the default behavior of the dragover event, which is to disallow the reception of drop events on the target element.
+            event.preventDefault();
+
+        }
+
+        //Callback function of the drop event, which receives the data passed through the dataTransfer object of the event (the id of the element being moved),
+        //and modifies the corresponding shape in the destination container in order to appear to have been filled by the dragged shape.
+        //This event is triggered when an element is dropped (the mouse click is unpressed) on top of its target.
+        function dropped(event){
+
+            event.preventDefault();
+
+            //We access original container of the plain image through the dataTransfer property of the event, which contains its id.
+            //We delete the original image from the container.
+            let dragged_object_id = event.dataTransfer.getData('text');
+            let dragged_object = document.getElementById(dragged_object_id);
+
+            //We consult the current element that received the event (that is, the destination container). 
+            //We can't access event.target because the event contains the original 
+            //receiver of the event, the actual image itself,
+            //which passes the event to the parent (the image is placed on top of the container). This pass-through is called bubbling, and it continues until
+            //the top level element in the hierarchy (either the document element or the viewport, depending on the event).
+            let currContainer = event.currentTarget;
+
+            console.log(`The dragged element is: ${dragged_object_id} \nThe destination is: ${currContainer.id}`)
+
+            //We check if the current target container matches with the shape being dragged using their id.
+            if(currContainer.id.includes(dragged_object_id)){
+
+                dragged_object.parentNode.removeChild(dragged_object);
+                currContainer.removeChild(currContainer.children[0]);
+                
+                //We create a new image with the filled shape, remove the previous image in the detination container, and append the new image to it.
+                let new_shape = document.createElement('img');
+                let path = './images/filled_'+dragged_object_id+'.png';
+                new_shape.width=200;
+                new_shape.height=200;
+                new_shape.src=path;
+                currContainer.appendChild(new_shape);
+
+            }
+            else alert('Wrong shape!');
+
+        }
+    </script>
+</head>
+<body>
+    <div id="header-container">
+        <h1>Don't drag me down</h1>
+    </div>
+    <div id="main-section-container">
+        <!--Container of the destination elements where the shapes are placed.-->
+        <div id="destination-container" class="container-class">
+            <div class="img-container" ondrop="dropped(event)" ondragover="allow(event)" id="square-target">
+                <img src="images/empty_square.png" height="200px" width="200px">
+            </div>
+
+            <div class="img-container" ondrop="dropped(event)" ondragover="allow(event)" id="circle-target">
+                <img src="images/empty_circle.png" height="200px" width="200px">
+            </div>
+
+            <div class="img-container" ondrop="dropped(event)" ondragover="allow(event)" id="triangle-target">
+                <img src="images/empty_triangle.png" height="200px" width="200px">
+            </div>
+
+        </div>
+
+        <!--Container of the source elements which are the shapes that will be moved to its corresponding container.-->
+        <div id="source-container" class="container-class">
+
+            <div class="img-container">
+                <img id="square" src="images/square.png" height="200px" width="200px" draggable="true" ondragstart="drag(event)">
+            </div>
+
+            <div class="img-container">
+                <img id="circle" src="images/circle.png" height="200px" width="200px" draggable="true" ondragstart="drag(event)">
+            </div>
+
+            <div class="img-container">
+                <img id="triangle" src="images/triangle.png" height="200px" width="200px" draggable="true" ondragstart="drag(event)">
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of the bezierCurveTo function. This is a function used
+    inside of a 2D context in an HTML5's Canvas to draw beziers Curves.
+    Here it's used to draw several curves downwards resembling a static image of water
+    running down a waterfall.
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Magic Spring</title>
+    <style>
+        @import url('styles/canvas_magic_spring.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Cascading down the stylesheet</h1>
+    <canvas id="canvas-element" width="500px" height="500px"></canvas>
+    
+    <script>
+
+        let wat_height = 350
+        let wat_width = 200
+
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+
+        //Drawing the blue background of the waterfall, as well as the two stones on its sides
+        context.fillStyle = "darkblue"
+        context.fillRect(150, 40, wat_width, wat_height)
+        context.fillStyle = "darkgrey"
+        context.fillRect(90, 40, 60, wat_height)
+        context.fillRect(350, 40, 60, wat_height)
+        
+        //Setting the color of the stripes that will represent the water 
+        //flowing down the cascade
+        context.strokeStyle = "white"
+        
+        //x offset that represents the distance between the edge of the waterfall
+        //and the current curve
+        let x_offset = 30
+        //Number of units that will separate each of the curves
+        let x_step = 10
+
+
+        //Iterate until reaching the right side of the waterfall
+        while(x_offset < (wat_width-30)){
+
+            //on each iteration, augment the current x_coord of the bezier Curve
+            let x_coord = 150 + x_offset
+            context.moveTo(x_coord, 40)
+            //Finally, draw each bezier curve. The function takes two attractor points
+            //as its first two arguments, towards which the line drawn between the current
+            //point of the path and the point in the third argument is pulled (like the 
+            //quadraticCurveTo function, the curve is like the force excerted by a planet's
+            //gravity, but in reverse: the further the attractor is from the curve, the more it's 
+            //pulled towards the attractor.
+            context.bezierCurveTo(x_coord+70, 190, x_coord-70, 300, x_coord, 390)
+            x_offset+=x_step
+        
+        }
+        context.stroke()
+
+    </script>
+</body>
+</html>

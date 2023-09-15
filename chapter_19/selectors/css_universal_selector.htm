@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of the universal selector in CSS.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Universal Selectors</title>
+    <style>
+        @import url('styles/universal_selector.css');
+    </style>
+</head>
+<body>
+    <h1>Selecting through the Universe</h1>
+    <div>
+        <!--This text will be styled by the first rule since it's
+        a descendant of the div tag.
+        It will also have the sufix "Children" since it is the children
+        of a children of the body tag, as stated in the third rule.-->
+        <p>
+            This is some text inside of a div tag and a paragraph!
+        </p>
+        <!--This text is not styled by the first rule since it is not
+        a descendant of a div tag (it's just part of its content).-->
+        This is just text inside of a div tag.
+    </div>
+    <!--All direct children tags (b and i tags) of this paragraph will be 
+        capitalized by the second rule. They will also have the sufix 
+        "Children" since they're the children of a child of the body tag,
+        as stated in the third rule.-->
+    <p id="paragraph">
+        Hello there. This is normal text. <b> Now this is bold text</b>. 
+        <i>Now this is text in italics</i>.
+    </p>
+</body>
+</html>

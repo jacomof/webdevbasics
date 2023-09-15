@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--Document to showcase the use of margins and borders inside of CSS.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Margins</title>
+    <style>
+        @import url('styles/margins.css');
+    </style>
+</head>
+<body>
+    <!--This first two elements are spaced by 400 pixels, since margins separate them.-->
+    <h1>Using margins in CSS</h1>
+    <div class="border-spaced">
+        This is a border-spaced object.
+    </div>
+    <div class="border-spaced">
+        This is a border-spaced object.
+    </div>
+    <!--This last two elements are spaced by 200 pixels, since they're separated
+    by two 200 pixels collapsing margins.-->
+    <div class="margin-spaced">
+        Underlying object. This object is below.
+    </div>
+    <div class="margin-spaced">
+        Overlying object. This object is above
+    </div>
+</body>
+</html>

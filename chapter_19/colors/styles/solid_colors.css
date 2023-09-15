@@ -1,0 +1,38 @@
+/*CSS document to style the css_solid_colors.htm document. It showecases
+the use of color in CSS using different color spaces*/
+
+/*This rule colors the info class' background with a blue-ish color
+and the text white. It uses the rgb declaration to specify the different
+rgb components of the blue-ish color in the rgb space. This can be done
+as well by using an hexadecimal value representation of the rgb colors,
+like in the color white in this rule, which translate to rgb(255,255,255)
+ (each pair of letters represents a value between 0 and 255 in hexadecimal).*/
+.info {background-color: rgb(70, 70, 255); color: #FFFFFF;}
+
+/*This rule uses the hsl (hue, saturation and light) color space to spe-
+cify the background color of the second span element. The font color
+is specified in the short hexadecimal rgb representation, in which 
+each character needs is internally doubled to calculated the 
+real rgb value of the color. For instance, #111 becomes #111111 which
+in turns represents the rgb values: rgb(17,17,17), which is a very dark color
+close to pure black*/
+.alert {background-color: hsl(70,100%,75%); color: #111;}
+
+/*rgb values can also be specified in percentages. This percentages
+represents the closeness to the maximum value (255) each of the rgb channels 
+can have. This rule uses this representation to select a purple-ish color
+for the background of the announcement class.*/
+
+.announcement {background-color: rgb(80%,50%,80%); font-weight: bolder;}
+
+/*Both hsl and rgb colors may be given transparency using the alpha
+channel in the functions hsla and rgba, respectively
+For example, look at the following rule*/
+
+.error {color: rgba(90%,10%,10%,10%); background-color: hsl(0, 100%, 80%, 100%);}
+
+/*Another way to specify colors is through predefined names.
+This rule, for example, uses the predefined color rosybrown to color
+the background of the HTML documen's element with the message class
+to an unsaturated pink color.*/
+.message {background-color: rosybrown}

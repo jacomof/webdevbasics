@@ -1,0 +1,15 @@
+/*Style sheet used in the canvas_bezier.htm
+HTML document of the 22nd chapters' exercises.*/
+
+h1{
+    font-weight: bold; 
+    text-decoration: black solid underline;
+}
+
+h1::first-letter{color: darkred; font-size: larger}
+
+canvas{
+    border: 10px dotted brown;
+    border-radius: 6px;
+    background-color: rgb(34, 121, 34);
+}

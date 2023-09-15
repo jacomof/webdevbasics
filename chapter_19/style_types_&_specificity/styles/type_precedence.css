@@ -1,0 +1,11 @@
+/*CSS Document to style the css_type_precedence.htm HTML document.
+This is done to showcase the precedence in which different CSS styles types
+are applied.*/
+p {text-decoration:line-through;}
+
+/*The different declaration of this rule will only apply if there
+is not an inline or internal style that overwrites it in the HTML
+document being styled.*/
+#parag {background-color: blueviolet; text-decoration: dashed line-through;}
+
+div {text-decoration: underline double;}

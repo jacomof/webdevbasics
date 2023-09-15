@@ -1,0 +1,42 @@
+<html>
+    <head><title>Javascript is weak</title></head>
+    <body>
+        <script>
+            a = 5.2323232;
+            b = "5.2323232";
+            aIsb = a == b;
+            if(aIsb)
+                document.write(a + " equals " + b + "<br>");
+            
+            c = "-2";
+            d = -2;
+            cIsd = c == d;
+            if(cIsd)
+                document.write(c + " equals " + d + "<br>");
+            
+            e = "NaN";
+            f = NaN;
+            eIsf = e == f;
+            if(eIsf)
+                document.write(e + " equals " + f + "<br>");
+            
+            g = true;
+            h = "true";
+            gIsh = g == h;
+            if(gIsh)
+                document.write(g + " equals " + h + "<br>");
+
+            if("false")
+                document.write("the string \"false\" evaluates to false, surprisingly!<br>");
+            else
+                document.write("the string \"false\" evaluates to false, surprisingly!<br>");
+
+            document.write("the negation operator applied to the string \"false\" evaluates to " + !"false" +"<br>");
+            document.write("the negation operator applied to the string \"true\" evaluates to " + !false +"<br>");
+            
+            if(!"False")
+                document.write("the string \"False\" evaluates to false, surprisingly!<br>");
+                
+        </script>
+    </body>
+</html>

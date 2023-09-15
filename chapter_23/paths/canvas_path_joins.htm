@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of the different visual configurations available for the
+    points in which different lines of a path intersect each other inside of a
+    canvas element (i.e. line joins).-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Line Joins</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Joining lines</h1>
+    <canvas id="canvas-element" width="500px" height="500px"></canvas>
+    <script>
+        //Function to draw a shape with equal, straight sides and a different number of edges.
+        //The shape's central position inside of the canvas can also be specified.
+        function drawShape(position, num_edges, size){
+            
+            context.beginPath()
+
+            let radians = 3.0*(Math.PI/2.0)
+            let ini_pos = [position[0] + size*Math.cos(radians), position[1] + size*Math.sin(radians)]
+            context.moveTo(ini_pos[0], ini_pos[1])
+            let pie_piece = (2.0*Math.PI)/num_edges
+            radians+= pie_piece
+            
+            //Loop around a circle to draw a figure with the specified number of edges
+            for(i = 1; i < num_edges; i++, radians+=pie_piece){
+
+                let x = position[0] + Math.cos(radians) * size
+                let y = position[1] + Math.sin(radians) * size
+
+                context.lineTo(x, y)
+                
+            }
+            context.closePath()
+            //Fills the area inside of the current path
+            context.fill()
+            //Draws a border around the pentagon by materialing the path
+            context.stroke()
+
+        }
+
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+        //Selects the width of the lines that'll be drawn on the canvas
+        context.lineWidth = 20
+        //Selects the color (or gradient) of the line
+        context.strokeStyle = "darkred"
+        //Selects the color (or gradient) with which the path will be filled
+        context.fillStyle = "darkblue"
+
+        //Sets the joint where two lines of the same path intersect each other to be round in shape
+        //by using the lineJoin property set to "round"
+        context.lineJoin = "round"
+        drawShape([70, 250], 3, 60)
+
+        //Sets the joint where two lines of the same path intersect each other to be 
+        //tangential to the intersecting lines by using the lineJoin property set to "bevel"
+        context.lineJoin = "bevel"
+        drawShape([250, 250], 4, 60)
+
+        //Sets the joint where two lines of the same path intersect each other to be shaped
+        //like a triangle by using the lineJoin property set to "miter"
+        context.lineJoin = "miter"
+        drawShape([430, 250], 5, 60)
+
+    </script>
+</body>
+</html>

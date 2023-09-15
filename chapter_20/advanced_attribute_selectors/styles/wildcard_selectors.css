@@ -1,0 +1,64 @@
+/*CSS document to style the css_wildcard_selectors.htm HTML document.
+Wildcard selectors in CSS are special operators that allows one to specify
+several string values with a similar structure. There are three of 
+them: ^=, $= and *=.
+The ^= operator selects all elements which begin with the sequence on the
+right side of the expression, while the $= operator selects all
+elements which end with the string on the right side of the expression.
+The *= operator selects all elements which contain the string on the
+right side of the expression.*/
+
+/*This first set of rules style all elements whose id
+begins with the color they're styled with
+(eg "red-header-primary" is styled red, etc.)*/
+
+[id^="red"]{
+    color: red; 
+    background-color:darkblue;
+}
+
+[id^="blue"]{
+    color: blue; 
+    background-color:darkorange;
+}
+
+[id^="green"]{
+    color: lightgreen; 
+    background-color:darkred;
+}
+
+/*The two next rules select all elements whose id ends in "primary" 
+(first rule) or "secondary" (second rule). Elements with Ids
+beginning in primary are considered more important in this document,
+and are thus underlined and written in bold text. Elements with Ids
+beginning with secondary are considered less important and are thus
+written in italics and using a lower font-weight.*/
+
+[id$="primary"]{
+    text-decoration: black wavy underline;
+    font-weight: 700;
+}
+
+[id$="secondary"]{
+    font-size: 0.8em;
+    font-style: italic;
+    font-weight: 300;
+}
+
+/*This final set of two rules styles elements whose name
+contain header (first rule) and paragraph (second rule).
+This way we can flag paragraph elements to be 
+styled differently than header elements just by using
+attribute selection.
+Headers are styled with a black overline and cenetered in the document
+, while paragraphs are justified.*/
+
+[id*="header"]{
+    text-decoration: black overline solid;
+    text-align: center; 
+}
+
+[id*="paragraph"]{
+    text-align: justify;
+}
+

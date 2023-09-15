@@ -1,0 +1,14 @@
+/*CSS style sheet to style the css_web_fonts.htm HTML document. It demonstrate
+the inclusion of external fonts obtained through the internet.*/
+
+h1{
+    font-family: 'Bebas Neue';
+}
+
+p.moodtype{
+    font-family: "moodtype", sans-serif;
+}
+
+p.playfair{
+    font-family: "playfair", sans-serif;
+}

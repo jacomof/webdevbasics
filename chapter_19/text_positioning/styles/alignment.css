@@ -1,0 +1,12 @@
+/*CSS style sheet to style the css_alignment.htm HTML document, which showcases
+the use of different alignments.*/
+
+/*This rule aligns the first paragraph to the left.*/
+#text1 {text-align: left;}
+/*This rule aligns the second pargraph to the right.*/
+#text2 {text-align: right;}
+/*This rule aligns the third paragraph to the center of its containing box.*/
+#text3 {text-align: center;}
+/*This rule justifies the text, to make all lines have the same length
+inside of its containing box.*/
+#text4 {text-align: justify;}

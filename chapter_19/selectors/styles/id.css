@@ -1,0 +1,4 @@
+/*CSS document to style several objects by id inside of the css_id.html page*/
+#old_document {font-style: italic; font-family: cursive; background: lightsalmon;}
+#new_document {font-family: 'Courier New', Courier, monospace}
+#first-title {font-size: 200%; color: darkslategrey;}

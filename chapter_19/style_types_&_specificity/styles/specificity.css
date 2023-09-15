@@ -1,0 +1,83 @@
+/*Style sheet to style the css_specificity.htm HTML document.
+It showcases CSS's concept of specificity, which is a method for 
+resolving selectors conflict by calculating a certain priority to 
+each rule. This priority is calculated by counting the number of matched
+id, class and element in the selectors* of a rule and ordering decreasingly the rules 
+according to the numbers obtained.
+In this ordering, Id selectors have a higher precedence than class elements, and 
+class elements have a higher precedence than tag elements. The rule that gets
+the first ranking is the one applied. 
+A popular way to calculate this ordering is by calulating the base 10
+number the three counts represent, with the id counts being the most significant digit, and tag counts
+is the least significant digit. In case any of the counts is higher
+than 9, base 20 is used, and if the number is higher than 19, then base
+30 is used, and so on. That is, the minimum multiple of 10 than can be
+used is the base.
+
+*Remember that CSS rules can have multiple selectors by using grouping,
+that is, by separating the selectors in the rules by commas.
+If any of the grouped selectors is met, the rule is applied.
+In case that multiple selectors of a rule match with the same element
+, the selector with the maximum specificity is applied.*/
+
+
+/*Rule 1. This rule's specificity can be represented as the triplet
+[0,1,0]. Converted to a decimal number it is: 0*10*10 + 1*10 + 0*1 = 10. 
+*/
+
+.menu1{
+    color: #00F;
+    text-decoration: underline;
+}
+
+/*Rule 2. In case two rules have the same specificity, only the last rule
+processed is applied. Thus, the following rule will have precendence
+over the previous one.*/
+
+.menu1{
+    color: rebeccapurple;
+}
+
+/*Rule 3. This rule's specificity is represented with the triplet [0,1,1].
+Converted to a decimal number it is: 0*10*10 + 1*10 + 1*1 = 11
+*/
+
+div.menu1{
+    color: #0B0;
+    text-decoration: line-through;
+}
+
+/*
+Rule 4. This rule's specificity is represent with the triplet [1,0,1].
+Converted to a decimal number is: 1*10*10 + 0*10 + 1 = 101
+*/
+div#menu2 li{
+    color: goldenrod;
+    text-decoration: underline solid;
+}
+
+/*
+Rule 4. This rule's specificity is represent with the triplet [0,0,1].
+Converted to a decimal number is: 1*10*10 + 0*10 + 2 = 102
+Since it has a higher precedence, it will be applied.
+Notice that the highest specificity of all grouped selectors is used
+for the rule comparisons. This is why the first selectors specificity of
+this rule is irrelevant in applying the style to the list items of
+menu2.
+*/
+li, div#menu2 ul li{
+    color: #F00;
+    text-decoration: wavy underline;
+}
+
+/*
+Rule 5. It has specificity [1,1,1], giving it a value of 111.
+Even though it has a higher precedence than the previous rules 
+for menu2, the list elements color will be styled by rule 4 since
+directly set properties have a higher precedence than inherited
+properties (notice that ul li is a descendant of menu 2). 
+*/
+div.menu2_class#menu2{
+    color: magenta;
+    text-decoration: line-through  dotted;
+} 

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate the use of patters to fill paths and primitives in HTML5's
+Canvas.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Patterns</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Breaking the pattern, embracing diversity</h1>
+    <canvas id="canvas-element" width="1280px" height="1280px"></canvas>
+    
+    <script>
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+
+        context.font = "bold 40px Ubuntu"
+        context.textAlign = "center"
+
+        //Loding the image used to create the pattern
+        let img = new Image()
+        img.src = "images/flower_background.jpg"
+        //It's important to wait for the image to load completely. Otherwise
+        //the patter won't display at all.
+        img.onload = () => {
+
+            //Snippets of code showcasing the different configurations of patterns available
+            context.lineWidth = 4
+            //Function used to create a pattern. It takes two arguments, the input image
+            //and a string defining how the pattern will repeat itself when filling 
+            //a shape.
+            //There are four options, rangin from full repetition of the pattern image 
+            //in all directions, to no repetition at all.
+            let pat1 = context.createPattern(img, "repeat")
+            context.fillStyle = pat1
+            context.fillRect(0,0,640, 640)
+            context.rect(0,0,640,640)
+            context.stroke()
+            context.fillStyle = "black"
+            context.fillText("repeat", 320, 320)
+
+            let pat2 = context.createPattern(img, "repeat-x")
+            context.fillStyle = pat2
+            context.fillRect(640,0,640,640)
+            context.fillStyle = "black"
+            context.fillText("repeat-x", 960, 320)
+            context.rect(640,0,640,640)
+            context.stroke()
+
+            let pat3 = context.createPattern(img, "repeat-y")
+            context.fillStyle = pat3
+            context.fillRect(0,640,640,640)
+            context.fillStyle = "black"
+            context.fillText("repeat-y", 320, 960)
+            context.rect(0,640,640,640)
+            context.stroke()
+
+            //Since the repetition configuration is relative to the origin of the canvas,
+            //for this pattern style to display correctly in its bottom-right quarter,
+            //we have to move its origin to the top-left corner of this section.
+            //Otherwise, since no repetition is applied, the pattern doesn't display at all
+            //by the point it arrives at this section of the canvas.
+            context.translate(640, 640)
+            let pat4 = context.createPattern(img, "no-repeat")
+            context.fillStyle = pat4
+            //Observe how now all coordinates are relative to the top-left corner of the
+            //bottom right section of the canvas. This means, for instance, that the rect
+            //filled inside of this section starts at [0, 0] (rather than at [640, 640])
+            context.fillRect(0,0,640,640)
+            context.fillStyle = "black"
+            context.fillText("no-repeat", 320, 320)
+            context.rect(0,0,640,640)
+            context.stroke()
+
+        }
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+    <head><title>Testing javascript arrays</title></head>
+    <body>
+        <h1>Playboard example</h1>
+        <script>
+            playboard = 
+                [['O', 'X', 'O'],
+                ['O','O','X'],
+                ['O','X','X']];
+            for(i = 0; i < playboard.length; i++){
+                for(j = 0; j < playboard[0].length; j++){
+                    document.write(playboard[i][j]+" | ");
+                }
+                document.write("<br>");
+            }
+            document.write("<br><br><br> <h1>List of numbers example</h1>");
+            num_list=[[1,2,3],[4,5,6],[7,8,9]];
+            for(rows of num_list)
+            {
+                for(cell of rows)
+                    document.write(cell + ", ");
+                document.write("<br>");
+            }
+        </script>
+    </body>
+</html>

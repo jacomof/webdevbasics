@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of fonts obtained externally 
+through the internet.
+It uses both a custom font downloaded from the internet 
+and a font obtained through google fonts.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Web Fonts</title>
+    <!--The link tags are used here to link to external web pages
+    in order to obtain the css style sheet which contains the inclusion
+    at-rule of the PlayFair and Beba Neue google fonts.-->
+    <link href="https://fonts.googleapis.com/css?family=Playfair" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue" rel="stylesheet">
+    <style>
+        /*This at-rule loads a font-family to the current style sheet
+        using a url.*/
+        
+        @import url('styles/web_fonts.css');
+
+        @font-face {
+            font-family: moodtype;
+            src: url('fonts/MOODTYPE-Regular.otf');
+        }
+
+
+        
+    </style>
+</head>
+<body>
+    <h1>I'm font of the web</h1>
+    <p class="moodtype">
+        This is a message in the font MoodType, downloaded from the internet
+        and included with the font-face directive.
+    </p>
+    <p class="playfair">
+        This is a message in the font PlayFair, downloaded from google fonts
+        using the link tag. This tag references a css file containing a font
+        import.
+    </p>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate how to play audio in a website using HTML5's media features.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Audio</title>
+    <style>
+        @import url('global_styles/media.css');
+    </style>
+    <script src="global_scripts/access_functions.js"></script>
+    <script>
+        //Function used to start playing the "js-controlled-audio" media element using javascript and the audio's tag DOM defined behavior.
+        function player_play(){
+            let player = O('js-controlled-audio')
+            player.play()
+        }
+
+        //Function used to start playing the "js-controlled-audio" media element using javascript and the audio's tag DOM defined behavior.
+        function player_pause(){
+            let player = O('js-controlled-audio')
+            player.pause()
+        }
+
+    </script>
+</head>
+<body>
+    <h1>The sound of silence</h1>
+    <!--The next lines use the audio tag, paired with the source tag, to include a snippet of a short recording stored locally in the repo.-->
+    <audio controls>
+        <!--Each source element represents an alternative encoding of the same recording, so all browsers are supported (not all browsers support all encodings,
+            but most mainstream browsers support MP3, AAC or vorbis)-->
+        <source src="media/audio/welcome_message.aac" type="audio/aac">
+        <source src="media/audio/welcome_message.mp3" type="audio/mpeg">
+        <source src="media/audio/welcome_message.ogg" type="audio/ogg">
+    </audio>
+
+    <!--The following div builds a custom player which using an audio tag, 2 buttons to play and pause the audio, and an image to signify the tag is interactable and
+    playable.-->
+    <div class="custom-audio-player">
+        <img src="images/play_logo.png" width="50px" class="custom-audio-player-logo">
+        <audio preload id="js-controlled-audio">
+            <source src="media/audio/js_sample.aac" type="audio/aac">
+            <source src="media/audio/js_sample.mp3" type="audio/mpeg">
+            <source src="media/audio/js_sample.ogg" type="audio/ogg">
+        </audio>
+        <button class="custom-audio-player-button" onclick="player_play()">
+            Play
+        </button>
+        <button class="custom-audio-player-button" onclick="player_pause()">
+            Pause
+        </button>
+    </div>
+
+    <!--The following audio tags creates an audio player which will loop once played. It plays a very short song written by Alex Kizenkov called
+    "Stops and Claps (Percussion and Rhythm)"". All credits go to him for the creation of this music.-->
+    <audio controls preload loop>
+            <source src="media/audio/stomps-and-claps-percussion-and-rhythm.mp3" type="audio/mpeg">
+            <source src="media/audio/stomps-and-claps-percussion-and-rhythm.ogg" type="audio/ogg">
+    </audio>
+
+    <script>
+        let audio_player = O('js-controlled-audio')
+        
+
+    </script>
+</body>
+</html>

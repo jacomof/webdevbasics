@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--First example of the repository showcasing HTML5's Canvas element.
+It allows you to draw complex graphics into a section of a web page
+using several drawing functions.
+This example here uses the canvas to draw three rectangles onto a 200x200px block
+of the page.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Rect</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Recting the place!</h1>
+    <canvas width="200px" id="rect_canvas">
+    </canvas>
+    <script>
+
+        let canv_element = O("rect_canvas")
+        //This call creates a 2D canvas context, 
+        //which is an object that can draw 2d images on the canvas.
+        //There're several other types of canvas context object (e.g webgl)
+        //which allow for other drawing modalities (like 3D graphics, bitmaps, etc.) 
+        let context = canv_element.getContext("2d")
+        //The fillStyle property of the context configures the color, gradient or pattern that
+        //will fill a specified area of the canvas (in this case the rectangle)
+        context.fillStyle = "darkblue"
+        //the fillRect call draws a rectangle on the canvas by using the set fill style
+        //It takes the position of the upper-left corner of the rectangle as well as its
+        //width and height as its argument
+        context.fillRect(0, 0, 75, 75)
+        context.fillStyle = "darkgreen"
+        context.fillRect(50, 50, 75, 75)
+        context.fillStyle = "darkred"
+        context.fillRect(100, 0, 75, 75)
+        context.fillStyle = "yellow"
+        context.fillRect(150, 50, 75, 75)
+</script>
+</body>
+</html>

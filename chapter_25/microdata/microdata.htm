@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate the concept of Microdata. Microdata is a web metadata format used to specify information about the site
+that might be relevant for website indexing.
+This metadata is used by search engines to classify and determine the relevance of a website, so
+it's essential for search engine optimization (it's the main method to embed structured data inside of a website in a machine-friendly manner, 
+so that can be easily extracted by a search engine) . There are several formats of metadata specification supported by modern browsers, mainly: RDFS, microdata
+and json-ld (the latter being the most widely used and preferred nowadays). All of them are based on the definition of a vocabulary of terms
+or items, to which properties can be attached to to describe the different pieces of information a website contains. These vocabularies determine
+the meaning of an element (or, in general, about the information it speaks about) inside of the site and the properties 
+(and corresponding values) it can possess. The most widely used repository of 
+vocabularies is hosted by schema.org, which is a website created with the sole purpose of creating, maintaining and promoting schemas (or vocabularies)
+for structured data on the web (paraphrased from the home page of the website: www.schema.org).
+
+Microdata itself is a standard of structured metadata that was created as an extension of HTML, so it has its own set of HTML5 attributes 
+that are readable by all browsers and can be included in almost any html element. The most widely used of these attributesany are:
+-itemtype: it's the url of the vocabulary to which the term describing the HTML element belongs to 
+->  eg: itemtype="https://schema.org/SoftwareApplication"
+-itemprop: defines a property of an term -> eg: itemprop="operatingSystem"
+-itemscope: indicates that the beginning of a new scope (i.e. the usage of a new vocabulary) within a block of elements 
+(for instance, for all the elements inside a div tag)
+
+To test and obtain in a human readable format all the microdata of this site, please introduce the html content of this file into the schema.org
+validator tool which you can find at: https://validator.schema.org/.
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Microdata</title>
+    <style>
+        @import url('style/microdata.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+    <!--<script>
+
+        /*The getItems function of the microdata API doesn't seem to be supported by most browsers anymore. Nonetheless, for completion's sake here
+        I provide a possible way of accessing microdata as explained in the book for browsers that do support it.*/
+        /*Function to access the microdata inside of the document and print it using a browser alert when clicking the "Show Microdata!" button.*/
+        function showMicrodata(){
+
+            //The function which we use to access microdata from javascript is the document.getItems method. To check if the browser supports it
+            //we check wether it is defines using the double negation operator (which essentially transform the existence of the getItems
+            //object into a boolean value. The first negation returns false if the function is undefined. Then then the second transforms this value
+            //to true if it was false (meaning it IS defined) and false if it was true (meaning it was not defined)).
+            if(!!document.getItems){
+
+                //Now that we know the function exists we access the microdata information by providing the url of a schema (vocabulary) definition
+                //so that the browsers knows how to interpret the metadata.
+                let platoData = document.getItems('https://schema.org/Person')
+                alert(platoData.properties['name'][0].textContent)
+            }else
+                alert("Microdata not supported");
+        }
+    </script> -->
+</head>
+<body>
+
+    <!--This is the main container of the website, which is about Platon, my dog. In this container, which contains all of Platon's
+    information, we define an item of the Person schema which will represent Platon using the schema.org/Person vocabulary.-->
+    <div class="content-container" itemscope itemtype="https://schema.org/Person">
+        <!--After we define the item we are talking about, we can add properties to it with the itemprop property of any tag inside the container.
+        In this case, we define his name.--> 
+        <h1 itemprop="name">Platon The Doggy</h1>
+        <div class="summary-card">
+            <span class="summary-card-title">Platon The Doggy</span>
+            <img class="summary-card-image" src="images/platon.jpeg" height="300">
+            <span class="summary-card-title">Scientific Classification</span>
+            <table style="width: 100%;">
+                <tr>
+                    <th>Domain:</td>
+                    <td>Eukaryota</td>
+                </tr>
+                <tr>
+                    <th>Kingdom:</th> 	
+                    <td>Animalia</td>
+                </tr>
+                <tr>
+                    <th>Phylum:</th> 	
+                    <td>Chordata</td>
+                </tr>
+                <tr>
+                    <th>Class:</th> 	
+                    <td>Mammalia</td>
+                </tr>
+                <tr>
+                    <th>Order:</th> 	
+                    <td>Carnivora</td>
+                </tr>
+                <tr>
+                    <th>Family:</th> 	
+                    <td>Canidae</td>
+                </tr>
+                <tr>
+                    <th>Genus:</th> 	
+                    <td>Canis</td> 
+                </tr>
+                <tr>
+                    <th>Species:</th> 	
+                    <td><i><b>C. familiaris</b></i></td> 
+                </tr>
+            </table>
+            <span class="summary-card-title">Binomial Name</span>
+            <span id="binomial-name">Canis Familiaris</span>
+
+        </div>
+        <p>Platon is a mammal from the family cananidae who was born on
+            <!--Some properties require that we use another vocabulary to define them because they need to have a specific type.
+            This is the case for the birthDate property, which expects a Date item. Dates are special in microdata in the sense that
+            they don't have properties, they are just a date string formatted following the iso 8601 format. 
+            It's important to note that in order to define any new item using a different vocabulary, we need to indicate it 
+            with the itemscope property (i.e we can't use just the itemtype property alone)--> 
+            <span itemprop="birthDate" itemscope itemtype="https://schema.org/Date">2016‐09‐01</span>. 
+            He's the most beautiful animal in the world.
+            The origins of his breed, the "Podenco", remounts to the XXV century, when spanish hunters started selectively breeding local stray dogs for 
+            hunting excelence. He's a cheerful, though very lazy dog who loves playing in the park and hunting and searching for food. He's not very
+            social, but still likes to say brief hellos to his fluffy friends once in a while. Once in a while he likes running a lot in circles, changing
+            directions bruptly (a phenomenom called "the Zoomies" in the dog caring community). He's 
+            <span itemprop="height" itemscope itemtype="https://schema.org/Distance">60cm</span> 
+            tall. Overall, he's the most beloved child of his 
+            care-taker, 
+            <!--This is an example of another property which requires a specific type. This time, the property itself has properties
+            because we are esentially defining a new item. From now on, there are more properties that define the known information
+            about Platon in the website and they follow the same property as at least one of the properties already explained.-->
+            <span itemprop="parent" itemscope itemtype="https://schema.org/Person">
+                <span itemprop="name">
+                Joaquín
+                </span>
+            </span> 
+            and will be loved for ever and ever to the end of times.     
+        </p>
+
+        <h2>Early Life</h2>
+        <p>
+
+            Platon was found as a 6 month puppy in some woods in the middle of 
+            <span itemprop="birthPlace" itemscope itemtype="https://schema.org/Place">
+                <span itemprop="address"> Valencia, Spain</span>
+            </span>
+            (the exact location is unknown by the author). He's
+            presumed to have been bred with the initial intention of using him for hunting, but was abandoned for unknown reason. He was then found 
+            by an unamed person and given to a dog shelter. Is at this point that Joaquin's parent, who knew someone involved with this shelter, were
+            given the option to adopt him, which they happily took. He was subsequently moved to 
+            <span itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+                <span itemprop="address">Joaquin's home</span> 
+            </span> 
+            .He was initially (and still somewhat is)
+            a very fearful dog, but with time the trauma of being abandoned and possibly beaten wore off and the became best friends. So his childhood
+            was mostly uneventful.  
+        </p>
+        <h2>Education</h2>
+        <p>
+            Ever since the author of this document knows plati, he's always been a very well-mannered dog. So education was never necessary as far as 
+            he's concerned. However, he's sometimes reprimanded for sleeping on the sofa or eating potentially dangerous objects.
+        </p>
+        <h2>Adulthood</h2>
+        <p>
+            Plati's adulthood has been great so far. He behaves well, seems happy and sometimes energetic. By the time of writing he's approximately 
+            seven years old. He has no known major diseases, and seems to be enjoying life as every dog should.
+
+        </p>
+        
+        <!-- Uncomment if your browser supports the outdated javascript microdata API.
+        <button class="show-microdata-button" onclick="showMicrodata()">
+            Show Microdata!
+        </button>
+        -->
+    </div>
+</body>
+</html>

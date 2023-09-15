@@ -1,0 +1,57 @@
+/*Elimination of the browser's default body margins*/
+body{
+    margin: 0;
+}
+
+/*Styling of the main title of the website*/
+h1{
+    font-weight: bold;
+    text-decoration: black solid underline;
+    padding: 0px;
+    /*margin-left: 10px;*/
+    margin: 0;
+    margin-left: 10px;
+    padding-top: 5px;
+    color: #fccb06;
+}
+
+h1::first-letter{color: yellow; font-size: larger}
+
+
+/*Container of the header of the website, displaying a horizontal blue strip*/
+#header-container{
+    background-color: #222e50;
+    margin: 0px;
+    height: 75px;
+    min-height: 75px;
+
+}
+
+/*Main container of the web application*/
+#main-container{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 10% 80% 10%;
+    border-top: #fccb06 solid 3px;
+}
+
+#side-margin-right, #side-margin-left{
+    height: auto;
+    background-color: #1d994d;
+    height: 100%;
+    width: 10%;
+}
+
+#side-margin-right{
+    border-right: #fccb06 solid 3px;
+
+}
+
+#side-margin-left{
+    border-left: #fccb06 solid 3px;
+}
+
+
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate the use of different origin and clipping
+configurations for elements backgrounds using CSS.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Background Clipping and Origins</title>
+    <style>
+        @import url('styles/background_clipping_&_origin.css');
+    </style>
+</head>
+<body>
+    <h1>Clipping the mag, changing the origins</h1>
+    <div class="container">
+        <div class="item1">
+            Origin: content-box<br>
+            Clip: content-box
+        </div>
+        <div class="item2">
+            Origin: content-box<br>
+            Clip: padding-box
+        </div>
+        <div class="item3">
+            Origin: content-box<br>
+            Clip: border-box
+        </div>
+        <div class="item4">
+            Origin: padding-box<br>
+            Clip: content-box
+        </div>
+        <div class="item5">
+            Origin: padding-box<br>
+            Clip: padding-box
+        </div>
+        <div class="item6">
+            Origin: padding-box<br>
+            Clip: border-box
+        </div>
+        <div class="item7">
+            Origin: border-box<br>
+            Clip: content-box
+        </div>
+        <div class="item8">
+            Origin: border-box<br>
+            Clip: padding-box
+        </div>
+        <div class="item9">
+            Origin: border-box<br>
+            Clip: border-box
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+    <head><title>Sorting things out</title></head>
+    <body>
+        <h1>Javascript sorting demonstration</h1>
+        <script>
+            //Sorting function logic:
+            //Given inputs: a & b -> place a before b if the comparator function returns a negative value, otherwise place b first
+            
+            //Default sorting: alphabetical
+            l1 = [14,1,2,3,1,2,2,2,10,4,5,2,1,4,5,2,6,7,4,3];
+            document.write("<h2>Default sorting (alphabetical) </h2>\
+            Original array: " + l1 + "<br>")
+            l1sorted1 = l1.sort()
+            document.write("Sorted array: " + l1sorted1);
+            //-------------------------------
+
+            document.write("<h2>Numerical sorting (ascending)</h2>")
+            l1sorted2 = l1.sort((a,b)=>a-b);
+            document.write("Sorted array: " + l1sorted2);
+            //-------------------------------
+
+            document.write("<h2>Numerical sorting (descending)</h2>")
+            l1sorted3 = l1.sort((a,b) => b-a)
+            document.write("Sorted array: " + l1sorted3);
+            //-------------------------------
+
+            l2 = [-10, 15, 0, 22, -50, 100, 12, 12, 35, -40, -180, 200, 250, -90]
+            document.write("<h2>Numerical sorting (ascending absolute value)</h2>")
+            document.write("New original array: " + l2 + "<br>")
+            l2sorted1 = l2.sort((a,b) => Math.abs(a) - Math.abs(b))
+            document.write("Sorted array: " + l2sorted1 + "<br>")
+        </script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+/*CSS style sheet to style the css_absolute_positioning.htm HTML document.
+It showcases the use of absolute positioning in CSS.*/
+
+
+/*All elements inside of this document are positioned absolutely.
+This means that they are positioned relative to the top left 
+corner of the document.*/
+.main-section {
+    height: 2000px;
+    width: 600px;
+    background-color: coral;
+    margin-top: 20px;
+    position: absolute;
+    top: 90px;
+    text-align: center;
+}
+
+.menu-bar {
+    position: absolute;
+    top: 20px;
+}
+.title{
+    position: absolute;
+    top: 40px;
+}

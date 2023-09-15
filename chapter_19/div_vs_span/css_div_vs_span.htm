@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--HTML to demonstrate the difference in styling between the div and span
+HTML tags. This tags are both non-semantic and have the purpose to separate
+HTML documents in different sections in order to apply some form of styling
+or post-processing (like manipulating them with javascript) to them.-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Div vs.Span comparison</title>
+        <style>
+            @import url('styles/div_vs_span.css');
+        </style>
+    </head>
+    <body>
+        <h1>Comparing the div and span html tags</h1>
+        <div id="div-tag">
+            <p>
+                The div tag is a block type HTML element. This means that
+                it covers a whole block of the HTML document. Therefore,
+                when included, it automatically separates vertically the elements that
+                sorround it. Furthermore, its boundaries,
+                when unchanged, cover the whole horizontal span of the document.
+                Actually, you can this here, in that the css-styled green background of
+                the element covers completely the strip of the document where this text lies.
+            </p>
+        </div>
+        <p>
+            The span tag is an inline HTML element. <span id="span-tag">This means that it only
+            covers the section of HTML document needed to cover the line/s of text
+            or elements it includes, like you can see here. It also wraps around the different text lines
+            it covers, as it does here. This is why its called inline, since it is used
+            to modify only the style of behavior of a specific snippet of text of the larger 
+            set of lines of text it is placed inside of.</span>  After the text covered by
+            the span tag, the styling applied  to it ends and the rest of the text continous
+            with the previous styling it had before.  
+        </p>
+    </body>
+</html>

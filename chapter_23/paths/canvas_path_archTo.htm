@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--HTML document to showcase the use of the archTo method, used to draw archs between
+between points insde of a HTML5's Canvas.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas arcTo</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>Hourglass</h1>
+    <canvas id="canvas-element" width="500px" height="500px"></canvas>
+    
+    <script>
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+        context.lineWidth = 5
+        context.strokeStyle = "gray"
+        
+        //Defining the coordinates of the edges and center of the hourglass 
+
+        let lu = {x: 20, y: 20}
+        let center = {x: 250, y: 250}
+        let ru = {x: 480, y: 20}
+        let ld = {x: 20, y: 480}
+        let rd = {x: 480, y: 480}
+
+        //Defining the initial radius to begin width (experimentally determined
+        //radius that joins the top and bottom opposite edges), as well as
+        //the amount with which the radius should be increased
+        let x_dist = (ru.x - lu.x)
+        let arch_offset = 60
+        let curr_arch = (0.70)*x_dist;
+        let max_arch = curr_arch
+        console.log(curr_arch)
+        context.moveTo(lu.x, lu.y)
+        //side flag to determine which side of the hourglass the current path is located
+        let side_switch  = false
+
+        //Iteration over the radius amount to generate the fillings of the first half 
+        //of the hourglass.
+        //The lines iterate from side to side of the hourglass
+        while (curr_arch > 0){
+
+            if(side_switch)
+                //The arcTo function is used to draw the stripes that fills 
+                //the hourglass. It takes two reference points as reference,
+                //which are used to determine one line that passes through 
+                //the current point to the first reference point, and a second
+                //line that goes between the first and second references.
+                //Then, a circumference is drawn to join both lines so that 
+                //the segment that the curve that is drawn forms part of 
+                //a circle with the given (third 5th parameter) radius.
+                context.arcTo(center.x, center.y, lu.x, lu.y, curr_arch)
+            else
+                context.arcTo(center.x, center.y, ru.x, ru.y, curr_arch)
+            
+            side_switch = !side_switch
+            curr_arch -= arch_offset
+
+        }
+
+        //Complete the hourglass first half by drawing a triangle around 
+        //the drawn stripes
+        context.moveTo(center.x, center.y)
+        context.lineTo(lu.x, lu.y)
+        context.lineTo(ru.x, ru.y)
+        context.lineTo(center.x, center.y)
+        
+        //Drawing of the second part of the hourglass
+        curr_arch = max_arch;
+        side_switch =true
+        context.moveTo(rd.x, rd.y)
+
+        while (curr_arch > 0){
+
+            if(side_switch)
+                context.arcTo(center.x, center.y, ld.x, ld.y, curr_arch)
+            else
+                context.arcTo(center.x, center.y,rd.x, rd.y, curr_arch)
+
+            side_switch = !side_switch
+            curr_arch -= arch_offset
+            //curr_arch = 0
+        }
+
+        context.moveTo(center.x, center.y)
+        context.lineTo(ld.x, ld.y)
+        context.lineTo(rd.x, rd.y)
+        context.lineTo(center.x, center.y)
+        
+        context.stroke()
+    </script>
+</body>
+</html>

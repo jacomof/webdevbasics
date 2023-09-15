@@ -1,0 +1,65 @@
+/*CSS document to showcase the use of multiple backgrounds.
+This can be specified with the background (or in this case,
+background-image) property of an element.
+To include multiple background you just have to separate the 
+different declarations with commas inside of the property.
+Additionally, you can position them individually by specifying
+in order the positions of the different images.*/
+
+body{
+    background-image: url('images/gold-border.png'),
+                      url('images/gold-border-right.png');
+    /*There are four different ways to specify bakgrounds' positions:
+    one, two, three or four argument declarations.
+    In each case you can specify the top, right, bottom and left value
+    to align the images to the corresponding edges of the element.
+    In case only one dimension (e.g. x dimension) is specified,
+    the other dimension is assumed to be centered.
+    In case one of the edge indicators is written to the left of a
+    measurement (e.g. 5 px), the measurement specifies the offset of
+    the image from the edge.*/
+    background-position: left -50px top, right -50px top;
+    background-repeat: no-repeat;
+}
+
+html, body {
+    height: 100%;
+}
+
+/*Main wrapper div to center
+the text vertically using the table
+display property*/
+
+.main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+
+/*Paragraph element is configured
+to act as a table-cell. This
+allows it to use the vertical-align
+property to center its text vertically 
+(while also occupying all the vertical space in the document)*/
+.paragraph {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/*Some rules to make the header more medieval looking,
+to fit the borders I found online.*/
+h1{
+    margin-left: 100px;
+    text-shadow: 2px 2px 5px #000;
+}
+h1::first-letter{
+    color: darkred;
+    font-size: 36px;
+}

@@ -1,0 +1,17 @@
+/*CSS document to style several paragraphs of the css_indenting.htm
+HTML document. This is done to showcase how to modify the indentation
+of a paragraph inside of HTML using CSS.*/
+
+/*This rule applies an indentation of 5 pixels to paragraph 1*/
+#paragraph1 {text-indent: 5px;}
+
+/*This rule applies an indentation of 12.5 pixels to paragraph 2*/
+#paragraph2 {text-indent: 12.5px;}
+
+/*This rule applies an indentation of 20 pixels to paragraph 3*/
+#paragraph3 {text-indent: 20px;}
+
+/*This last massive indentation rule showcases what happens when an indentation
+surpasses the length of a line of text inside of the screen. Its applied
+to paragraph 4*/
+#paragraph4 {text-indent: 2000px;}

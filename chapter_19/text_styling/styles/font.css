@@ -1,0 +1,22 @@
+/*CSS document to style several pieces of text contained in 
+the css_font HTML document. It uses the font family of properties
+to do so.*/
+
+/*The following rules set the font, size and weight of the text, respectively.
+Weight refers to how dark and thick the font is displayed.*/
+#main_title {font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.0em;
+    font-weight: bolder;}
+#genesis {font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.8em;
+    font-weight: bold}
+
+/*This rule sets only the font and size of the text.*/
+#lorem {font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.4em;}
+
+/*This rule also modifies the text's color*/
+.important {font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 120%;
+    font-weight: 600;
+    color: rgb(131, 106, 43)}

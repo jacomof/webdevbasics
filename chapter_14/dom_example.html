@@ -1,0 +1,15 @@
+<html>
+    <head><title>Testing the DOM</title></head>
+    <body>
+        <a href="https://www.google.com" id="doclink">Click here to visit google</a><br>
+        <script>
+            curr_link = document.links[0].href;
+            curr_link_v2 = doclink.href;
+            curr_link_v3 = document.getElementById("doclink").href;
+            document.write("The link inside of this page is: " + curr_link + "<br>");
+            document.write("Are curr_link and curr_link_v2 the same? " + (curr_link == curr_link_v2 ? "yes" : "no") + "<br>");
+            document.write("Are curr_link_v2 and curr_link_v3 the same? " + (curr_link_v2 == curr_link_v3 ? "yes" : "no") + "<br>");
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,256 @@
+/*This is the one and only CSS style sheet of platespace. As you probably already know if you have read through this repo, 
+each rule customizes how one or more components of the website look like.
+It's divided into the different section of the page to enhance readibility and make looking for specific components of the site faster.*/
+
+
+/*-->Global styles*/
+
+*{
+    font-family: 'Roboto';
+    font-size: 14pt;
+}
+
+html{
+    background: white;
+}
+
+/*Styling of the body section of all pages. It creates a margin around the content and a colored border.*/
+body{
+    margin-right: 20px;
+    margin-left: 20px;
+    border: 3px solid black;
+    background: rgb(209, 188, 163);
+}
+
+/*Styling of a general banner used to display general information. Applies a border, background and font color
+to create a message-box.*/
+span.info{
+    background-color: rgb(233, 233, 135);
+    font-weight: 700;
+    color: rgb(202, 131, 0);
+    border: solid orangered 2px;
+    border-radius: 8px;
+    padding: 4px;
+    display: block;
+    margin-bottom: 30px;
+    width: fit-content;
+}
+
+/*Styling of error messages to the user. It changes only the font's color and weight.*/
+.error{
+    font-weight: 700;
+    color: rgb(245, 15, 15);
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+/*Styling that for banner that indicates that a successful operation has taken place inside of the website. 
+It changes the font's color and weight, and adds a rounded border.*/
+.success{
+
+    background-color: rgb(138, 233, 135);
+    font-weight: 700;
+    color: rgb(0, 116, 6);
+    border: solid rgb(0, 167, 50) 2px;
+    border-radius: 8px;
+    padding: 4px;
+    display: block;
+    margin-bottom: 30px;
+    width: fit-content;
+
+}
+
+
+/*Style that's applied to almost all elements, to add a margin to the left.*/
+.main{
+    margin-left: 40px;
+}
+
+/*Style applied to the container of a floated element so that the floated element doesn't overflow.*/
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/*Style applied to custom header-like elements to change their font.*/
+.header{
+    font-weight: 700;
+}
+
+textarea{
+    border: solid rgb(73, 73, 73) 2px;
+    border-radius: 5px;
+}
+
+/*-->Header styles*/
+
+/*Style of the title container, to separate the title from the rest of the page with a border and to apply a different background.*/
+#title-container{
+    background-color: beige;
+    border-bottom: solid black 3px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    margin-bottom: 20px;
+}
+
+/*Style of the title image, to center it in the title section*/
+#title-image{
+    margin-right: auto;
+    margin-left: auto; 
+    display: block;
+}
+
+/*Style of the header buttons container, to add a margin below the header buttons.*/
+.header-button-container{
+
+    margin-bottom: 40px;
+
+}
+
+/*Style of the header buttons, to give them a more button like appearence with a rounded border, a background color and a different font.*/
+.header-button{
+
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: rgb(221, 219, 219);
+    margin-right: 3px;
+    font-size: large;
+    padding: 3px 10px;
+    text-decoration: none;
+    font-family: Consolas;
+
+}
+
+
+/*-->Sign up styles*/
+
+/*Style of the labels of the input fields where users input their credentials in the sign up and log in sites. It mainly gives it a fixed
+size to separate it from the input field proper.*/
+.fieldname{
+
+    width: 120px;
+    margin-bottom: 6px;
+    display: inline-block;
+
+}
+
+/*Style of submit button, to give it a margin so that it's aligned with the input fields.*/
+.submit-button{
+    margin-left: 125px;
+}
+
+
+/*--> My Profile styles*/
+
+/*Style of the profile's submit button, to align it to the right.*/
+#profile-submit-button{
+    float: right;
+}
+
+/*Style of the input form of the profile editing page, to make it so that the textarea contained within it doesn't clip out.*/
+.profile-input{
+    width: fit-content;
+}
+
+/*Style of the span element used to contain and separate the file submit element and the submit button from the text area above it.*/
+#file-input-container{
+    margin-top: 20px;
+    display: block;
+}
+
+/*Style of the profile pictures inside of the website. It mainly gives it a margin, a border and a slight shadow.*/
+.profile-picture{
+    float: left;
+    margin-bottom: 20px;
+    margin-right: 15px;
+    border: solid black 2px;
+    box-shadow: 3px 3px 3px black;
+}
+
+
+/*--> Members Styles*/
+
+
+/*Style of the buttons used to interact with the selected user in the members page.*/
+
+#members-selected-users-button-container{
+
+    margin-bottom: 20px;
+
+}
+
+/*Style of the "Other members" list*/
+li.members-list{
+    height: fit-content;
+
+}
+
+/*Style of the buttons to add and drop members of the website.*/
+a.list-button{
+    margin-left: 15px;
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+/*--> Friends Styles*/
+
+/*Style of the div element used to separate the different lists on the "Friends" page. It applies margins.*/
+.friends-list{
+
+    margin-top: 10px;
+    margin-bottom: 50px;
+
+}
+
+/*-- Messages Styles>*/
+
+/*Style of the general panel that contains the public and private buttons of the messages' input form. It applies vertical margins and a custom 
+font family.*/
+div.radio-button-panel{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Consolas;
+}
+
+/*Style of the container of the radio buttons and their titles. It applies horizontal margins.*/
+.radio-button-container{
+    margin-right: 8px;
+    display: inline-block;
+    font-size: 12pt;
+    font-weight: 500;
+}
+
+/*Style applied to all private elements (including messages and buttons).*/
+.private{
+    font-style: italic;
+}
+
+/*Style applied to the private message radio button.*/
+div.private-button{
+    color: rgb(22, 22, 22);
+}
+
+/*Style applied to the message submit button, just to add a margin to separate it from the radio buttons.*/
+.message-submit-button{
+    margin-left: 30px;
+}
+
+/*Style of the button to refresh the messages.*/
+.refresh-messages-button{
+    margin-top: 30px;
+    background-color: rgb(97, 97, 233);
+    border: solid black 2px;
+    border-radius: 6px;
+}
+
+/*Style of the span elements displaying the messages' content.*/
+.message{
+
+    white-space: pre-wrap;
+    margin-bottom: 10px;
+
+}
+
+
+

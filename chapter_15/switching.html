@@ -1,0 +1,25 @@
+<html>
+    <head><title>Switching up</title>
+        <script>
+            function processIn(val){
+                switch(val){
+                    case "hi":
+                        console.log("hello");
+                        break;
+                    case "bye":
+                        console.log("Good bye!");
+                        break;
+                    default:
+                        console.log("Can't understand you mate :(");
+                        break;
+                }
+            }
+            
+        </script>
+    </head>
+    <body>
+        <input type="text" id="tinput" value="none">
+        <button onclick="processIn(tinput.value)">Submit value</button>
+
+    </body>
+</html>

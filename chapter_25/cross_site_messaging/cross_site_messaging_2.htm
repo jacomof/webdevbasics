@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate the cross-site communication capabilities of HTML5. It implements one of the ends of a simple communication app
+hosted locally between two pages of the website. The communication app consists basically in a simple WhatsApp-like application.
+This website is opened automatically by the cross_site_messaging_1.htm document for it to receive its messages.-->
+
+<html>
+    <meta charset="UTF-8">
+    <title>Cross-site messaging</title>
+    <style>
+        @import url('../global_styles/global_style.css');
+        @import url('style/cross_site_messaging.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+    <script>
+
+        //Once the site has been opened, we assign the opener windows to the receiver variable, so that we can send messages to it using the same
+        //syntax as in the original cross_site_messaging_1 document.
+        receiver = window.opener;
+
+        //Function to send a message to the receiver window defined in the receiver variable.
+        function sendCrossMessage(){
+        
+            //We fetch the input area where the user inputted the message 
+            let input_field = O('message-input');
+
+            //We check wether the message has any non space characters before sending.
+            let rgxp = new RegExp('[^ ]+')
+            if(rgxp.test(input_field.value)){
+                //We use the postMessage method on the receiver window which will 
+                //trigger an event on the receiver site with the data (in string format) we pass as an argument to the function.
+                //The window.postMessage function takes three arguments, the data being send to the window, the targetOrigin which contains a domain
+                //in order to limit the websites that can receive messages from this website (only websites from the defined domain can receive messages)
+                //and optionally a sequence of transferable objects that will be send alongside the message.
+                //In this case we limit the targetOrigin to localhost so that only sites installed in the current machine can be send messages,
+                //which will prevent attackers from other websites from sending malicious payloads to our application.
+                
+                receiver.postMessage(input_field.value, 'http://localhost');
+
+                //We attach the freshly send message as a send message in the message board on the sender side.
+                addSendMessage(input_field.value);
+
+            }
+            //Finally, we clear the textarea input field
+            input_field.value = '';
+        
+        }
+        
+        //Function to send a message when the enter key is pressed while writing a message on the textarea input element.
+        //It's called anytime we press a key on the textarea element.
+        function sendButtonKeyPressed(event){
+            //The onkeydown event contains information about the keys being pressed. Among this the name of the key inside of the key property.
+            if(event.key === 'Enter'){
+                event.preventDefault();
+                sendCrossMessage();
+            }
+        }
+
+        //Function to add a send message to the message container. It creates a new <p> element, and sets its the class attribute 
+        //to "message" (general estyle of the message bubbles) and "send-message" for proper styling of the element before appending
+        //it to the message container.
+        function addSendMessage(inputText){
+            let messageContainer = O('messages-container');
+            let newMsg = document.createElement('p');
+            newMsg.setAttribute('class', 'message send-message');
+            newMsg.innerText = inputText;
+            messageContainer.appendChild(newMsg);
+        }
+
+        //Function to add a received message to the message container. It creates a new <p> element, and sets its the class attribute 
+        //to "message" (general estyle of the message bubbles) and received-message for proper styling of the element before appending
+        //it to the message container.
+        function addReceivedMessage(inputText){
+            let messageContainer = O('messages-container');
+            let newMsg = document.createElement('p');
+            newMsg.setAttribute('class', 'message received-message');
+            newMsg.innerText = inputText;
+            messageContainer.appendChild(newMsg);
+        }
+        
+    </script>
+<body>
+    <div class="background-container">
+        <div id="header-container">
+            <h1>Communication is key</h1>
+        </div>
+        <div id="main-section-container">
+            <div id="messages-container">
+
+            </div>
+            <div class="input-container">
+                <textarea autosize rows="4" id="message-input" onkeydown="sendButtonKeyPressed(event)"></textarea>
+                <button onclick="sendCrossMessage()" class="message-send-button"></button>
+            </div>
+            <!--We add the onmessage response functionality only after the div it'll modify. This is done so that we make 
+            sure the modified elements exists before trying to modify them.-->
+            <script>
+                //Callback function to the windows onmessage event
+                //(that is, a function that is called when the window receives a onmessage event).
+                function receiveCrossMessage(event){
+
+                    //For security reasons we first check wether the message received originates from a legitimate source
+                    //(in this case the local server since we know the other side of the communication must be the website
+                    //corss_site_messaging_2, which is hosted locally on the current computer executing this repo)
+                    if(event.origin === 'http://localhost')
+                        //We add the newly received message's data to the site's message container as a new message bubble.
+                        addReceivedMessage(event.data);    
+
+                }
+
+                //We assign the receiveCrossMessage function to the callback of the onmessage event of the website's window.
+                //This event is generated when the window receives a message send using its postMessage method.
+                window.onmessage= receiveCrossMessage
+            </script>
+        </div>
+    </div>
+</body>
+</html>

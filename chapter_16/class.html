@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Creating dog class</title>
+        <!-- A class' method may be defined inside or outside of the class. This makes it possible to share functions between classes -->
+        <script>
+            function appHuman(){
+                main.innerHTML += ("Hello hooman :) I'm " +  this.name + " <br>")
+            }
+
+            function seatWating(){
+                main.innerHTML += this.name + " is waiting! <br>"
+            }
+        </script>
+    </head>
+    <body id="main">
+        <h1>The class of a dog</h1>
+        <script>
+            //the class and constructor are defined simultaneously (they seem to be one & the same)
+            function Perro(name, age, breed, human){
+                //this represents the current class. To define properties simply declare properties of this special reference using the syntax this.{var} = val
+                this.name = name
+                this.age = age
+                this.breed = breed
+                this.human = human
+                //the definitions of methods is very similar of that of classes, simply assign them to this
+                //function may be defined on the fly using unnamed function, 
+                this.woof = function(){
+                    document.write("Woof :3 <br>")
+                }
+                //or other function may be reused just like variables' values.
+                this.approachHuman = appHuman
+                Perro.prototype.taxonomy = "Cannus"
+                this.printTaxonomy = function(){document.write("My taxonomy is: " + Perro.prototype.taxonomy + "<br>")} 
+            }
+            //new reserved keyword used to create a new object
+            mi_perrito = new Perro("coco", 7,  "Golden Retriever", "Elisa");
+            mi_perrito.woof();
+            //to call an object's method simply use the syntax [object name].[method]([param1,param2,...]) as shown below
+            mi_perrito.approachHuman();
+            
+            mi_perrito2 = new Perro("Manati", 5, "Dogo Argentino", "Peter");
+            //special attribute prototype is used to define static properties and methods from the class
+            Perro.prototype.seatWating = seatWating
+            mi_perrito2.seatWating()
+            mi_perrito.seatWating();
+            mi_perrito.printTaxonomy();
+
+        </script>
+    
+    </body>
+</html>

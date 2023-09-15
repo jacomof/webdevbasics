@@ -1,0 +1,47 @@
+/*CSS style sheet to style the js_timeouts_and_intervals.htm HTML
+document*/
+
+h1{
+    font-weight: bold; 
+    text-decoration: black solid underline;
+}
+
+h1::first-letter{color: darkred; font-size: larger}
+
+/*Rules to style the timer,
+allowing its values to be displayed
+in the center of the timer-container
+and styling the size, font and
+background color*/
+div.timer-container{
+    border: 2px solid black;
+    background-color: darkslategrey;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    display: table;
+}
+
+div.timer{
+    vertical-align: middle;
+    display: table-cell;
+    font-size: large;
+    font-style: 'Bruno Ace';
+    text-align: center;
+    color: white;
+}
+
+
+/*Rule to style the fieldset with a round border*/
+fieldset{
+    border-radius: 5px;
+    border: solid black 2px;
+    width:fit-content;
+}
+
+/*Rule to set the size of the input fields and 
+their margin from the submit button*/
+.time-input{
+    width : 40px;
+    margin-bottom: 20px;
+}

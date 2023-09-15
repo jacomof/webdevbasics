@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--HTML documents to demonstrate the use of color gradients inside of HTML5's Canvas
+elements. It does so by coloring with gradients a path and a text figure.
+It also colors a star with a radial gradient.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas gradients</title>
+    <style>
+        @import url('../global_styles/canvas_style.css');
+    </style>
+    <script src="../global_scripts/access_functions.js"></script>
+</head>
+<body>
+    <h1>The star grading system</h1>
+    <canvas id="canvas-element" width="800px" height="800px"></canvas>
+    
+    <script>
+
+        function drawPoint(x, y){
+            context.arc(x,y,10,0,Math.PI*2.0);
+
+            context.fill()
+        }
+
+        canvas = O("canvas-element")
+        context = canvas.getContext("2d")
+        
+        //The first gradient is created. It's a linear gradient that goes from yellow
+        //to red. The function itself takes four arguments, two points that determine the
+        //direction of the gradient
+        const grad1 = context.createLinearGradient(canvas.width/2.0, 100, canvas.width, 100)
+        
+        //To add colors to the gradients, the addColorStop function is used. It takes 
+        //two arguments, a percentage that represents the point in the gradient's lines
+        //where the color specified in the second argument will begin.
+        grad1.addColorStop(0, "yellow")
+
+        //As we add more colors to the gradient, the figure to which the gradient is
+        //applied will have its color gradually change between the different adjacent colors
+        //that we've added. For example, here the text's color will transition gradually;
+        //starting with yellow and gradually changing to red. 
+        grad1.addColorStop(1, "red")
+        
+        context.font = "bold 60px Ubuntu"
+        context.textAlign = "center"
+        
+        //After creating the gradient we can asign it directly to the fillStyle property
+        //of the context, just like regular color. Then, we draw the desired text and gradient 
+        //using the fillText function.  
+        context.fillStyle = grad1
+        context.fillText("Gradients are cool!", canvas.width/2.0, 70)
+
+
+        //-------------------------------------------------------------
+        
+        //Another example of a linear gradient, this time coloring a rainbow and doing so
+        //using a vertical gradient line (the colors transition from bottom to top)
+        const grad2 = context.createLinearGradient(400, 350, 400, 120)
+        grad2.addColorStop(0, 'violet')
+        grad2.addColorStop(0.166,  'blue')
+        grad2.addColorStop(0.332, 'green')
+        grad2.addColorStop(0.498, 'yellow')
+        grad2.addColorStop(0.664, 'orange')
+        grad2.addColorStop(0.830, 'red')
+        grad2.addColorStop(1, 'violet')
+
+        context.fillStyle = grad2
+        drawPoint(400, 280)
+
+        //Snippet of code to create a simple rainbow shaped figure
+        context.beginPath()
+        context.moveTo(170, 350)
+        context.lineTo(240, 350)
+        context.arc(400, 350, 160, Math.PI, 0, false)
+        context.lineTo(630, 350)
+        context.arc(400, 350, 230, 0, Math.PI, true)
+        context.closePath()
+        context.fill()
+
+
+        //-----------------------------------------------------------
+        //Snippet of code to create a star shaped figure based on a couple of parameters
+        //(mainly its center, the radius of the circle used to draw it and the length 
+        //of its peaks relative to the circumference of the mentioned circle)
+        limb_size = 50
+        radius = 40
+        star_pieces = 5
+        center = {x: canvas.width/2.0, y: 500}
+
+        step = (Math.PI*2.0)/star_pieces
+        context.beginPath()
+        context.moveTo(center.x, center.y - limb_size - radius)
+        
+        for(ang = Math.PI/2.0; ang < 5*(Math.PI/2); ang+=step){
+            let peak_size = limb_size + radius
+            let peak = {x: center.x + Math.cos(ang)*peak_size, 
+                y: center.y - Math.sin(ang)*peak_size}
+            let floor = {x: center.x + Math.cos(ang+(step/2.0))*radius, 
+                y: center.y - Math.sin(ang+(step/2.0))*radius}
+            context.lineTo(peak.x, peak.y)
+            context.lineTo(floor.x, floor.y)
+        }
+
+        context.closePath()
+        //Here we create a radial gradient (e.g. a gradient that expands by growing in a
+        //circular shape). It takes 6 arguments: the first three are the x and y coordinates
+        //of the first circle and its radius, and the last three are the x and y coordinates
+        //of the second circle and its radius. The gradient grows so that it transitions from
+        //the first circle to the second.
+        rad_grad = context.createRadialGradient(center.x, center.y, 1, center.x, center.y, 
+        radius+limb_size)
+        //Just like in linear gradients, we need to add manually the different colors through
+        //which the gradient will transition. Similarly, we also give the function a percentage
+        //that represents how these colors are arranged inside of the gradient,
+        //from which to which color the gradient should transition and what percentage
+        //of the gradient they occupy
+        rad_grad.addColorStop(0, "darkblue")
+        rad_grad.addColorStop(0.3, "yellow")
+        rad_grad.addColorStop(1, "red")
+        context.fillStyle = rad_grad
+        context.stroke()
+        context.fill()
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+/*CSS document showcasing different configurations of the text-shadow
+property in CSS.*/
+h1::first-letter{
+    color: darkblue;
+    font-size: larger;
+}
+
+/*The arguments of the property are, in order:
+-the x-axis offset
+-the y-axis offset
+-the amount of blurryness of the shadow
+-the color*/
+h1{
+    text-shadow: 2px 2px 5px darkblue;
+}
+
+/*This generates a black shadow for the misterious paragraph*/
+p.misterious{
+    text-shadow: 2px 2px 2px black;
+}
+
+/*This generates a red shadow placed on the top-right side of the text*/
+p.bloody{
+    text-shadow: 10px -10px darkred; 
+}
+
+/*This generates a black very blurry shadow*/
+p.blurry{
+    text-shadow: 3px 3px 6px black;
+}

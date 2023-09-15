@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--HTML document to demonstrate the use of CSS wildcard selectors.-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS wildcard selectors</title>
+    <style>
+        @import url('styles/wildcard_selectors.css');
+    </style>
+</head>
+<body>
+    <!--This two elements are styled red using the value of their id,
+    by selecting all elements whose id begins with "red"-->
+    <!--Additionally, they're styled according to its level of importance
+    (primary) given the second set of rules of the documents' style
+    sheet.-->
+    <h1 id="red-header-primary">These cards are wild</h1>
+    <p id="red-paragraph-primary">
+        This is some text, from the group of the reds. 
+    </p>
+    <!--This two elements are styled using the value of their id,
+    by selecting all elements whose id ends with "secondary"-->
+    <h2 id="blue-header-secondary">This is a secondary header</h2>
+    <!--Additionally, this div is styled green by using the first set of
+    rules of the document's style sheet-->
+    <div id="green-paragraph-secondary">
+        Secondary explanation of the red paragraph.
+    </div>
+
+</body>
+</html>

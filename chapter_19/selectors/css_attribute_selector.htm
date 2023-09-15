@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--HTML documents to showcase the use of attribute selectors in CSS-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CSS attribute selectors</title>
+    <style>
+        @import url('styles/attribute_selector.css');
+    </style>
+</head>
+<body>
+    <h1>Selecting some nice attributes</h1>
+    <br>
+    <!--The contents of the form are styled based on the input type
+    attribute-->
+    <form method="post" enctype="multipart/form-data">
+        <input type="text" placeholder="Enter your name"><br>
+        <div id="willpower">Willpower <input type="checkbox"></div>
+        Strength <input type="checkbox"> <br>
+        Wits <input type="checkbox"> <br>
+        Select one of the following: 
+        Readiness<input type="radio"> 
+        Patience<input type="radio">
+        Braveness<input type="radio">
+    </form>
+</body>
+</html>

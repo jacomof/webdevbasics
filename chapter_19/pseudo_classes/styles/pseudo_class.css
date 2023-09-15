@@ -1,0 +1,24 @@
+/*CSS style sheet to style the css_pseudo_class.htm document.
+It demonstrates the use of pseudo-classes in CSS, which are 
+special keywords reserved to represent a certain state of an element
+(e.g. when an element is hover over with the mouse, or when it 
+has focus) or that an element has certain attributes (e.g. 
+read-write when an input element may be modified by the user).*/
+
+/*This rule adds a border, changes the background color and increases
+the font weight of all buttons when they're hovered on. It does so by using
+the hover pseudo-class.*/
+button:hover {
+    border: solid yellow 3px;
+    background-color: lightyellow;
+    font-weight:700;
+}
+
+/*This rule adds a border, changes the background color and increases
+the font size of all text areas when they're given focus. It does so by
+using the focus pseudo-class.*/
+textarea:focus{
+    border: dotted darkblue 5px;
+    background-color: lightyellow;
+    font-size: 120%;
+}

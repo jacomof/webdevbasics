@@ -1,0 +1,63 @@
+/*CSS style sheet to demonstrate 3D transforms in CSS.
+It styles the css_3D_transforms.htm HTML document.
+Just as 2D transforms, there are several premade functions to
+perform 3D transforms (translate3d, rotate3d, scale3d, etc.). 
+Similarly, transform matrix can also be used to perform more
+complex operations.*/
+
+/*Container styling, to indicate initial position*/
+div{
+    display: inline-block;
+    border: black solid;
+}
+
+/*This is a basic example of a 3D transform in CSS. You first define
+a perspective on the element, determining how far in the z axis
+it is placed from the user's view, and then you can apply a transform
+to it (in this case a translation). See how the element is smaller
+because it's translate further away from the viewport in the 
+z dimension.*/
+p.translated{
+    background-color: lightseagreen;
+    transform: perspective(350px) translate3d(600px, 200px, -100px);
+}
+
+/*An example of a 3D rotation along the Y axis.*/
+.rotated{
+    transform: perspective(450px) rotateY(45deg) translate3d(200px, 0, 0);
+}
+
+/*An axample of scaling an image in 3D
+It also showcases the perspective-origin property, which can be used to set
+the offset of the element from the vanishing point of the 3D scene
+(where all lines parallel to the z axis converge). This is equivalent
+to the position at which the hypothetical observer of the scene is looking.
+Observe as well the use of the perspective property, rather than the function.
+This can be used to give a set of elements a unified perspective,
+as if they where observed by the same camera/person.
+*/
+
+div.open-image-container{
+    perspective-origin: 800px; /*One or two arguments may be specified for
+    the origin, corresponding with the x and y dimensions.*/
+    perspective: 400px;
+}
+.scaled{
+    transform-style: preserve-3d;
+    transform: 
+    rotateX(40deg) 
+    scaleZ(-3)
+    translateX(500px);
+}
+
+/*Finally, elements can also be transformed with a 3D transform matrix.
+Here is an example of it.*/
+
+
+div.matrix-transformed-container{
+    background-color: lightblue;
+    perspective: 400px;
+}
+p.matrix-transformed{
+    transform: matrix3d(1,0,0,0,0,0.707,-0.707,0,2.121,0.707,0.707,0,200,0,0,1);
+}
