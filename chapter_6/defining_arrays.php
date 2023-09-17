@@ -1,13 +1,30 @@
 <?php
+/*PHP program showcasing the different types of arrays present
+in the language. 
+An array is a data type that consists of a sequence of ordered 
+elements stored together. The elements of an array can be accessed
+with an index that uniquely identifies it inside of the array.
+
+There are two types of arrays in PHP: numeric and associative 
+arrays. The elements of a numeric array are accessed using
+a positive integer as an index. Associative arrays' elements
+are accessed using a string as index (eg. a['person']).*/
+
 /*Numeric arrays
  * 
  * 
  * ------------------*/
+
+//Creating an empty array
+
+$list = Array(); //Alternatively, $list = []
+
 //Automatic appending. Let php determine the position of the new element with its internal array pointer.
 $list[] = 2;
 $list[] = 3;
 
 for($i=0; $i < 2; $i++)
+    //Indexing array
     print $list[$i] . '<br>';
 
 //Initialization with values
@@ -19,7 +36,8 @@ for($i=0; $i < $l; $i++)
 
 print $message . '<br>';
 
-/* Associative arrays
+
+/* Associative arrays (eg. arrays indexed with strings)
  * 
  * -----------------*/
 

@@ -1,5 +1,5 @@
 <?php
-/*Different array functions to learn php's basic array functionality
+/*Different array functions to learn php's basic array functionalities
  * 
  *-----------------------*/
 
@@ -60,8 +60,11 @@ foreach($ass_array_reconst as $key => $elem){
     print "Variable $key is $elem <br>";
 }
 
+
+/*Function to print an array.*/
 function print_array(&$arr){
     echo "[";
+    //Iterate and print each of its elements.
     foreach($arr as $s)
         printf("$s,");
         echo "]\n";
